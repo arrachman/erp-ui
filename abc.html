@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Reload Express sample App</title>
+  </head>
+  <body>
+    <h1>Expresso</h1>
+    <pre id="abcd">Reload Express 1</pre>
+    <pre id="abcd2"></pre>
+    <!-- All you have to do is include the reload script and have it be on every page of your project -->
+    <!-- You do not create this route, reload creates it for you automatically -->
+    <script>
+    var request = new XMLHttpRequest()
+
+    // Search
+    request.open('GET', 'http://localhost:3000/f1/area?param={"target":"show","pageNumber":1,"pageLimit":3,"filter":"","orderBy":"","groupBy":""}', true)
+    // request.open('GET', 'http://localhost:3000/showById/A011?param={"target":"showById"}', true)
+    // request.open('POST', 'http://localhost:3000/f1/area/insert?param={"target":"insertDataaa"}')
+    // request.open('PUT', 'http://localhost:3000/f1/area/update/A011?param={"target":"updateData"}')
+    // request.open('GET', 'http://localhost:3000/showSearch/coa?param={"target":"showSearch","pageNumber":1,"pageLimit":3,"filter":"","orderBy":"","groupBy":""}')
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    request.onload = function() {
+      // Begin accessing JSON data here
+      var obj = JSON.parse(this.response);
+      // document.getElementById('abcd').textContent = JSON.stringify(obj, undefined, 2);
+      document.getElementById('abcd').textContent = JSON.stringify(obj, undefined, 2);
+      document.getElementById('abcd2').textContent = obj;
+
+      // var data = JSON.parse(this.response)
+
+      // if (request.status >= 200 && request.status < 400) {
+      //     data.forEach(movie => {
+      //     console.log(movie.title)
+      //     })
+      // } else {
+      //     console.log('error')
+      // }
+    }
+    var params = {
+      akode:'A02123',
+      anama: 'A 023',
+      acatatan:'',
+      aaktif:1,
+      ainputuser:1,
+      ainputtgl:'2020-02-15 18:52:47',
+      amodifikasiuser:0,
+      amodifikasitgl:'1971-01-01 00:00:00',
+    }
+    // var params = {
+    //   anama: 'A 024',
+    //   acatatan:' A b c d ',
+    //   aaktif:1,
+    //   amodifikasiuser:1,
+    //   amodifikasitgl:'1971-01-01 00:00:00',
+    // }
+    request.send();
+    // request.send(JSON.stringify(params));
+    </script>
+    <script src="/reload/reload.js"></script> 
+  </body>
+</html>

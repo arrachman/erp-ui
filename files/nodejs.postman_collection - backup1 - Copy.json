@@ -1,0 +1,5659 @@
+{
+	"info": {
+		"_postman_id": "816c402c-451a-4bb8-bc44-4799c83e79d2",
+		"name": "nodejs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "auth - login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c60cb34b-483d-4e2b-801c-32ae2f7cc6b7",
+								"exec": [
+									"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "arrachm4n",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "bismillahhirrohmanirrohim",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/f0/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"f0",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth - logout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c60cb34b-483d-4e2b-801c-32ae2f7cc6b7",
+								"exec": [
+									"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/f0/auth/logout?param={\"target\":\"showById\"}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"f0",
+								"auth",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "param",
+									"value": "{\"target\":\"showById\"}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth - register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ukode",
+									"value": "qw",
+									"type": "text"
+								},
+								{
+									"key": "unama",
+									"value": "fatchur rachman",
+									"type": "text"
+								},
+								{
+									"key": "uaktif",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ulevel",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "ubahasa",
+									"value": "INA",
+									"type": "text"
+								},
+								{
+									"key": "uaktivitasproduksi",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "upassword",
+									"value": "qw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/f0/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"f0",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F0 - Administrator",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "user - Get data profile all",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e199b0d5-910a-4a58-9f35-a3d658f87b48",
+										"exec": [
+											"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/users/profile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user - Get data profile by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/users/13",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										"13"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Generator",
+					"item": [
+						{
+							"name": "API_CRUD",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pageNumber",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "itemLimit",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "target",
+											"value": "showDataArea",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f0/generator?table=f1_city&noFix=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f0",
+										"generator"
+									],
+									"query": [
+										{
+											"key": "table",
+											"value": "f1_city"
+										},
+										{
+											"key": "noFix",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UI",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pageNumber",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "itemLimit",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "target",
+											"value": "showDataArea",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f0/generator/ui?table=f1_country&noFix=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f0",
+										"generator",
+										"ui"
+									],
+									"query": [
+										{
+											"key": "table",
+											"value": "f1_country"
+										},
+										{
+											"key": "noFix",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POSTMAN",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pageNumber",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "itemLimit",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "target",
+											"value": "showDataArea",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f0/generator/postman?table=f1_area,f1_bank,f1_branch,f1_city,f1_class,f1_coa,f1_contact,f1_color,f1_country,f1_item&noFix=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f0",
+										"generator",
+										"postman"
+									],
+									"query": [
+										{
+											"key": "table",
+											"value": "f1_area,f1_bank,f1_branch,f1_city,f1_class,f1_coa,f1_contact,f1_color,f1_country,f1_item"
+										},
+										{
+											"key": "noFix",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F1 - Master Data",
+			"item": [
+				{
+					"name": "Area",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"akode\":\"A013\",\"anama\":\"A0025\",\"acatatan\":\"\",\"aaktif\":1,\"ainputuser\":1,\"ainputtgl\":\"2020-02-15 18:52:47\",\"amodifikasiuser\":0,\"amodifikasitgl\":\"1971-01-01 00:00:00\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/area?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"anama\":\"anama 456\",\"acatatan\":\"acatatan 456\",\"aaktif\":\"0\",\"amodifikasiuser\":\"0\",\"amodifikasitgl\":\"{{timestamp}}\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/area/a012?param={\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area",
+										"a012"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/area?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/area/a013?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area",
+										"a013"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/area/a013?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area",
+										"a013"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "City",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"akode\":\"A013\",\"anama\":\"A0025\",\"acatatan\":\"\",\"aaktif\":1,\"ainputuser\":1,\"ainputtgl\":\"2020-02-15 18:52:47\",\"amodifikasiuser\":0,\"amodifikasitgl\":\"1971-01-01 00:00:00\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/area?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"anama\":\"anama 456\",\"acatatan\":\"acatatan 456\",\"aaktif\":\"0\",\"amodifikasiuser\":\"0\",\"amodifikasitgl\":\"{{timestamp}}\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/area/a012?param={\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area",
+										"a012"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/city?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"city"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/city/a1?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"city",
+										"a1"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/area/a013?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"area",
+										"a013"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Bank",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"bkode\":\"a9\",\"bnama\":\"nama a8\",\"bcatatan\":\"{{timestamp}}\",\"baktif\":1,\"binputuser\":1,\"binputtgl\":\"{{timestamp}}\",\"bmodifikasiuser\":0,\"bmodifikasitgl\":\"{{timestamp}}\",\"bcustomdate1\":\"{{tgldef}}\",\"bcustomdate2\":\"{{tgldef}}\",\"bcustomdate3\":\"{{tgldef}}\",\"bcustomdbl1\":0,\"bcustomdbl2\":0,\"bcustomdbl3\":0,\"bcustomint1\":0,\"bcustomint2\":0,\"bcustomint3\":0}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/f1/bank?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"bank"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"bnama\":\"bnama 456\",\"balamat\":\"balamat 456\",\"bkota\":\"bkota 456\",\"bnotelp\":\"bnotelp 456\",\"bnofax\":\"bnofax 456\",\"bcatatan\":\"bcatatan 456\",\"baktif\":\"0\",\"bmodifikasiuser\":\"0\",\"bmodifikasitgl\":\"{{timestamp}}\",\"bcustomtext1\":\"bcustomtext1 456\",\"bcustomtext2\":\"bcustomtext2 456\",\"bcustomtext3\":\"bcustomtext3 456\",\"bcustomtext4\":\"bcustomtext4 456\",\"bcustomtext5\":\"bcustomtext5 456\",\"bcustomint1\":\"0\",\"bcustomint2\":\"0\",\"bcustomint3\":\"0\",\"bcustomdbl1\":\"0\",\"bcustomdbl2\":\"0\",\"bcustomdbl3\":\"0\",\"bcustomdate1\":\"{{timestamp}}\",\"bcustomdate2\":\"{{timestamp}}\",\"bcustomdate3\":\"{{timestamp}}\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/bank/a9?param={\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"bank",
+										"a9"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/bank?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"bank"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/bank/a9?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"bank",
+										"a9"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/bank/a9?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"bank",
+										"a9"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Branch",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bkode",
+											"value": "bkode123",
+											"type": "text"
+										},
+										{
+											"key": "bnama",
+											"value": "bnama 123",
+											"type": "text"
+										},
+										{
+											"key": "balamat1",
+											"value": "balamat1 123",
+											"type": "text"
+										},
+										{
+											"key": "balamat2",
+											"value": "balamat2 123",
+											"type": "text"
+										},
+										{
+											"key": "bkota",
+											"value": "bkota 123",
+											"type": "text"
+										},
+										{
+											"key": "bkodepos",
+											"value": "bkodepos 123",
+											"type": "text"
+										},
+										{
+											"key": "bnotelp",
+											"value": "bnotelp 123",
+											"type": "text"
+										},
+										{
+											"key": "bnofax",
+											"value": "bnofax 123",
+											"type": "text"
+										},
+										{
+											"key": "bcatatan",
+											"value": "bcatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "baktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "binputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "binputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/branch/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"branch",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"bnama\":\"bnama 456\",\"balamat1\":\"balamat1 456\",\"balamat2\":\"balamat2 456\",\"bkota\":\"bkota 456\",\"bkodepos\":\"bkodepos 456\",\"bnotelp\":\"bnotelp 456\",\"bnofax\":\"bnofax 456\",\"bcatatan\":\"bcatatan 456\",\"baktif\":\"0\",\"bmodifikasiuser\":\"0\",\"bmodifikasitgl\":\"{{timestamp}}\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/branch/bkode123?param=bkode{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"branch",
+										"bkode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "bkode{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/branch?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"branch"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/branch/showById/bkode123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"branch",
+										"showById",
+										"bkode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/branch/bkode123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"branch",
+										"bkode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Class",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ckode",
+											"value": "ckode123",
+											"type": "text"
+										},
+										{
+											"key": "cnama",
+											"value": "cnama 123",
+											"type": "text"
+										},
+										{
+											"key": "ccatatan",
+											"value": "ccatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "caktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext1",
+											"value": "ccustomtext1 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext2",
+											"value": "ccustomtext2 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext3",
+											"value": "ccustomtext3 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext4",
+											"value": "ccustomtext4 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext5",
+											"value": "ccustomtext5 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate1",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate2",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate3",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "cindexbarcode",
+											"value": "cindexbarcode 123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/class/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"class",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"cnama\":\"cnama 456\",\"ccatatan\":\"ccatatan 456\",\"caktif\":\"0\",\"cmodifikasiuser\":\"0\",\"cmodifikasitgl\":\"{{timestamp}}\",\"ccustomtext1\":\"ccustomtext1 456\",\"ccustomtext2\":\"ccustomtext2 456\",\"ccustomtext3\":\"ccustomtext3 456\",\"ccustomtext4\":\"ccustomtext4 456\",\"ccustomtext5\":\"ccustomtext5 456\",\"ccustomint1\":\"0\",\"ccustomint2\":\"0\",\"ccustomint3\":\"0\",\"ccustomdbl1\":\"0\",\"ccustomdbl2\":\"0\",\"ccustomdbl3\":\"0\",\"ccustomdate1\":\"{{timestamp}}\",\"ccustomdate2\":\"{{timestamp}}\",\"ccustomdate3\":\"{{timestamp}}\",\"cindexbarcode\":\"cindexbarcode 456\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/class/ckode123?param=ckode{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"class",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "ckode{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/class?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"class"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/class/showById/ckode123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"class",
+										"showById",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/class/ckode123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"class",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Coa",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cid",
+											"value": "cid123",
+											"type": "text"
+										},
+										{
+											"key": "cnomor",
+											"value": "cnomor 123",
+											"type": "text"
+										},
+										{
+											"key": "ctipe",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ckategori",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cdc",
+											"value": "cdc 123",
+											"type": "text"
+										},
+										{
+											"key": "curutan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "caktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cnama",
+											"value": "cnama 123",
+											"type": "text"
+										},
+										{
+											"key": "cnamaalias1",
+											"value": "cnamaalias1 123",
+											"type": "text"
+										},
+										{
+											"key": "cnamaalias2",
+											"value": "cnamaalias2 123",
+											"type": "text"
+										},
+										{
+											"key": "cnamaalias3",
+											"value": "cnamaalias3 123",
+											"type": "text"
+										},
+										{
+											"key": "cgd",
+											"value": "cgd 123",
+											"type": "text"
+										},
+										{
+											"key": "clevel",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "csubdari",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cparent",
+											"value": "cparent 123",
+											"type": "text"
+										},
+										{
+											"key": "clevel1",
+											"value": "clevel1 123",
+											"type": "text"
+										},
+										{
+											"key": "clevel2",
+											"value": "clevel2 123",
+											"type": "text"
+										},
+										{
+											"key": "clevel3",
+											"value": "clevel3 123",
+											"type": "text"
+										},
+										{
+											"key": "clevel4",
+											"value": "clevel4 123",
+											"type": "text"
+										},
+										{
+											"key": "clevel5",
+											"value": "clevel5 123",
+											"type": "text"
+										},
+										{
+											"key": "cjenisaruskas",
+											"value": "cjenisaruskas 123",
+											"type": "text"
+										},
+										{
+											"key": "cbukupembantu",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccabang",
+											"value": "ccabang 123",
+											"type": "text"
+										},
+										{
+											"key": "clokasi",
+											"value": "clokasi 123",
+											"type": "text"
+										},
+										{
+											"key": "cdivisi",
+											"value": "cdivisi 123",
+											"type": "text"
+										},
+										{
+											"key": "cmatauang",
+											"value": "cmatauang 123",
+											"type": "text"
+										},
+										{
+											"key": "ckodebank",
+											"value": "ckodebank 123",
+											"type": "text"
+										},
+										{
+											"key": "cnorekbank",
+											"value": "cnorekbank 123",
+											"type": "text"
+										},
+										{
+											"key": "cjenis",
+											"value": "cjenis 123",
+											"type": "text"
+										},
+										{
+											"key": "csaldoawal",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "csaldoberjalan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccatatan",
+											"value": "ccatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "cinputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccostcenter",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext1",
+											"value": "ccustomtext1 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext2",
+											"value": "ccustomtext2 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext3",
+											"value": "ccustomtext3 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext4",
+											"value": "ccustomtext4 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext5",
+											"value": "ccustomtext5 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext6",
+											"value": "ccustomtext6 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext7",
+											"value": "ccustomtext7 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext8",
+											"value": "ccustomtext8 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext9",
+											"value": "ccustomtext9 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext10",
+											"value": "ccustomtext10 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint4",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint5",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint6",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint7",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint8",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint9",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint10",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl4",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl5",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl6",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl7",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl8",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl9",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl10",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate1",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate2",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate3",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate4",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate5",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate6",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate7",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate8",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate9",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate10",
+											"value": "{{timestamp}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/coa/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"coa",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"cnomor\":\"cnomor 456\",\"ctipe\":\"0\",\"ckategori\":\"0\",\"cdc\":\"cdc 456\",\"curutan\":\"0\",\"caktif\":\"0\",\"cnama\":\"cnama 456\",\"cnamaalias1\":\"cnamaalias1 456\",\"cnamaalias2\":\"cnamaalias2 456\",\"cnamaalias3\":\"cnamaalias3 456\",\"cgd\":\"cgd 456\",\"clevel\":\"0\",\"csubdari\":\"0\",\"cparent\":\"cparent 456\",\"clevel1\":\"clevel1 456\",\"clevel2\":\"clevel2 456\",\"clevel3\":\"clevel3 456\",\"clevel4\":\"clevel4 456\",\"clevel5\":\"clevel5 456\",\"cjenisaruskas\":\"cjenisaruskas 456\",\"cbukupembantu\":\"0\",\"ccabang\":\"ccabang 456\",\"clokasi\":\"clokasi 456\",\"cdivisi\":\"cdivisi 456\",\"cmatauang\":\"cmatauang 456\",\"ckodebank\":\"ckodebank 456\",\"cnorekbank\":\"cnorekbank 456\",\"cjenis\":\"cjenis 456\",\"csaldoawal\":\"0\",\"csaldoberjalan\":\"0\",\"ccatatan\":\"ccatatan 456\",\"cmodifikasiuser\":\"0\",\"cmodifikasitgl\":\"{{timestamp}}\",\"ccostcenter\":\"0\",\"ccustomtext1\":\"ccustomtext1 456\",\"ccustomtext2\":\"ccustomtext2 456\",\"ccustomtext3\":\"ccustomtext3 456\",\"ccustomtext4\":\"ccustomtext4 456\",\"ccustomtext5\":\"ccustomtext5 456\",\"ccustomtext6\":\"ccustomtext6 456\",\"ccustomtext7\":\"ccustomtext7 456\",\"ccustomtext8\":\"ccustomtext8 456\",\"ccustomtext9\":\"ccustomtext9 456\",\"ccustomtext10\":\"ccustomtext10 456\",\"ccustomint1\":\"0\",\"ccustomint2\":\"0\",\"ccustomint3\":\"0\",\"ccustomint4\":\"0\",\"ccustomint5\":\"0\",\"ccustomint6\":\"0\",\"ccustomint7\":\"0\",\"ccustomint8\":\"0\",\"ccustomint9\":\"0\",\"ccustomint10\":\"0\",\"ccustomdbl1\":\"0\",\"ccustomdbl2\":\"0\",\"ccustomdbl3\":\"0\",\"ccustomdbl4\":\"0\",\"ccustomdbl5\":\"0\",\"ccustomdbl6\":\"0\",\"ccustomdbl7\":\"0\",\"ccustomdbl8\":\"0\",\"ccustomdbl9\":\"0\",\"ccustomdbl10\":\"0\",\"ccustomdate1\":\"{{timestamp}}\",\"ccustomdate2\":\"{{timestamp}}\",\"ccustomdate3\":\"{{timestamp}}\",\"ccustomdate4\":\"{{timestamp}}\",\"ccustomdate5\":\"{{timestamp}}\",\"ccustomdate6\":\"{{timestamp}}\",\"ccustomdate7\":\"{{timestamp}}\",\"ccustomdate8\":\"{{timestamp}}\",\"ccustomdate9\":\"{{timestamp}}\",\"ccustomdate10\":\"{{timestamp}}\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/coa/cid123?param=cid{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"coa",
+										"cid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "cid{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/coa?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"coa"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/coa/showById/cid123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"coa",
+										"showById",
+										"cid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/coa/cid123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"coa",
+										"cid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Contact",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "kid",
+											"value": "kid123",
+											"type": "text"
+										},
+										{
+											"key": "kkode",
+											"value": "kkode 123",
+											"type": "text"
+										},
+										{
+											"key": "knama",
+											"value": "knama 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategori",
+											"value": "kkategori 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategorinama",
+											"value": "kkategorinama 123",
+											"type": "text"
+										},
+										{
+											"key": "kcabang",
+											"value": "kcabang 123",
+											"type": "text"
+										},
+										{
+											"key": "kcabangnama",
+											"value": "kcabangnama 123",
+											"type": "text"
+										},
+										{
+											"key": "klokasi",
+											"value": "klokasi 123",
+											"type": "text"
+										},
+										{
+											"key": "klokasinama",
+											"value": "klokasinama 123",
+											"type": "text"
+										},
+										{
+											"key": "kgudang",
+											"value": "kgudang 123",
+											"type": "text"
+										},
+										{
+											"key": "kgudangnama",
+											"value": "kgudangnama 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategorisalesman",
+											"value": "kkategorisalesman 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategorisalesmannama",
+											"value": "kkategorisalesmannama 123",
+											"type": "text"
+										},
+										{
+											"key": "karea",
+											"value": "karea 123",
+											"type": "text"
+										},
+										{
+											"key": "kareanama",
+											"value": "kareanama 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategoricustomer",
+											"value": "kkategoricustomer 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategoricustomernama",
+											"value": "kkategoricustomernama 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategorisupplier",
+											"value": "kkategorisupplier 123",
+											"type": "text"
+										},
+										{
+											"key": "kkategorisuppliernama",
+											"value": "kkategorisuppliernama 123",
+											"type": "text"
+										},
+										{
+											"key": "kdivisi",
+											"value": "kdivisi 123",
+											"type": "text"
+										},
+										{
+											"key": "kdivisinama",
+											"value": "kdivisinama 123",
+											"type": "text"
+										},
+										{
+											"key": "ksubdivisi",
+											"value": "ksubdivisi 123",
+											"type": "text"
+										},
+										{
+											"key": "ksubdivisinama",
+											"value": "ksubdivisinama 123",
+											"type": "text"
+										},
+										{
+											"key": "ksalesman",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ksalesmannama",
+											"value": "ksalesmannama 123",
+											"type": "text"
+										},
+										{
+											"key": "kkontakperson",
+											"value": "kkontakperson 123",
+											"type": "text"
+										},
+										{
+											"key": "kterminglobal",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kaktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kaktiftgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "k1alamat1",
+											"value": "k1alamat1 123",
+											"type": "text"
+										},
+										{
+											"key": "k1alamat2",
+											"value": "k1alamat2 123",
+											"type": "text"
+										},
+										{
+											"key": "k1alamat3",
+											"value": "k1alamat3 123",
+											"type": "text"
+										},
+										{
+											"key": "k1alamat4",
+											"value": "k1alamat4 123",
+											"type": "text"
+										},
+										{
+											"key": "k1alamat5",
+											"value": "k1alamat5 123",
+											"type": "text"
+										},
+										{
+											"key": "k1kota",
+											"value": "k1kota 123",
+											"type": "text"
+										},
+										{
+											"key": "k1propinsi",
+											"value": "k1propinsi 123",
+											"type": "text"
+										},
+										{
+											"key": "k1kodepos",
+											"value": "k1kodepos 123",
+											"type": "text"
+										},
+										{
+											"key": "k1negara",
+											"value": "k1negara 123",
+											"type": "text"
+										},
+										{
+											"key": "k1kontakperson",
+											"value": "k1kontakperson 123",
+											"type": "text"
+										},
+										{
+											"key": "k1kontaknohp",
+											"value": "k1kontaknohp 123",
+											"type": "text"
+										},
+										{
+											"key": "k1kontakemail",
+											"value": "k1kontakemail 123",
+											"type": "text"
+										},
+										{
+											"key": "k1notelp1",
+											"value": "k1notelp1 123",
+											"type": "text"
+										},
+										{
+											"key": "k1notelp2",
+											"value": "k1notelp2 123",
+											"type": "text"
+										},
+										{
+											"key": "k1nofax",
+											"value": "k1nofax 123",
+											"type": "text"
+										},
+										{
+											"key": "k1email",
+											"value": "k1email 123",
+											"type": "text"
+										},
+										{
+											"key": "k1website",
+											"value": "k1website 123",
+											"type": "text"
+										},
+										{
+											"key": "k2alamat1",
+											"value": "k2alamat1 123",
+											"type": "text"
+										},
+										{
+											"key": "k2alamat2",
+											"value": "k2alamat2 123",
+											"type": "text"
+										},
+										{
+											"key": "k2alamat3",
+											"value": "k2alamat3 123",
+											"type": "text"
+										},
+										{
+											"key": "k2alamat4",
+											"value": "k2alamat4 123",
+											"type": "text"
+										},
+										{
+											"key": "k2alamat5",
+											"value": "k2alamat5 123",
+											"type": "text"
+										},
+										{
+											"key": "k2propinsi",
+											"value": "k2propinsi 123",
+											"type": "text"
+										},
+										{
+											"key": "k2kota",
+											"value": "k2kota 123",
+											"type": "text"
+										},
+										{
+											"key": "k2kodepos",
+											"value": "k2kodepos 123",
+											"type": "text"
+										},
+										{
+											"key": "k2negara",
+											"value": "k2negara 123",
+											"type": "text"
+										},
+										{
+											"key": "k2kontakperson",
+											"value": "k2kontakperson 123",
+											"type": "text"
+										},
+										{
+											"key": "k2kontaknohp",
+											"value": "k2kontaknohp 123",
+											"type": "text"
+										},
+										{
+											"key": "k2kontakemail",
+											"value": "k2kontakemail 123",
+											"type": "text"
+										},
+										{
+											"key": "k2notelp1",
+											"value": "k2notelp1 123",
+											"type": "text"
+										},
+										{
+											"key": "k2notelp2",
+											"value": "k2notelp2 123",
+											"type": "text"
+										},
+										{
+											"key": "k2nofax",
+											"value": "k2nofax 123",
+											"type": "text"
+										},
+										{
+											"key": "k2email",
+											"value": "k2email 123",
+											"type": "text"
+										},
+										{
+											"key": "k2website",
+											"value": "k2website 123",
+											"type": "text"
+										},
+										{
+											"key": "k3alamat1",
+											"value": "k3alamat1 123",
+											"type": "text"
+										},
+										{
+											"key": "k3alamat2",
+											"value": "k3alamat2 123",
+											"type": "text"
+										},
+										{
+											"key": "k3alamat3",
+											"value": "k3alamat3 123",
+											"type": "text"
+										},
+										{
+											"key": "k3alamat4",
+											"value": "k3alamat4 123",
+											"type": "text"
+										},
+										{
+											"key": "k3alamat5",
+											"value": "k3alamat5 123",
+											"type": "text"
+										},
+										{
+											"key": "k3kota",
+											"value": "k3kota 123",
+											"type": "text"
+										},
+										{
+											"key": "k3propinsi",
+											"value": "k3propinsi 123",
+											"type": "text"
+										},
+										{
+											"key": "k3kodepos",
+											"value": "k3kodepos 123",
+											"type": "text"
+										},
+										{
+											"key": "k3negara",
+											"value": "k3negara 123",
+											"type": "text"
+										},
+										{
+											"key": "k3kontakperson",
+											"value": "k3kontakperson 123",
+											"type": "text"
+										},
+										{
+											"key": "k3kontaknohp",
+											"value": "k3kontaknohp 123",
+											"type": "text"
+										},
+										{
+											"key": "k3kontakemail",
+											"value": "k3kontakemail 123",
+											"type": "text"
+										},
+										{
+											"key": "k3notelp1",
+											"value": "k3notelp1 123",
+											"type": "text"
+										},
+										{
+											"key": "k3notelp2",
+											"value": "k3notelp2 123",
+											"type": "text"
+										},
+										{
+											"key": "k3nofax",
+											"value": "k3nofax 123",
+											"type": "text"
+										},
+										{
+											"key": "k3email",
+											"value": "k3email 123",
+											"type": "text"
+										},
+										{
+											"key": "k3website",
+											"value": "k3website 123",
+											"type": "text"
+										},
+										{
+											"key": "k4alamat1",
+											"value": "k4alamat1 123",
+											"type": "text"
+										},
+										{
+											"key": "k4alamat2",
+											"value": "k4alamat2 123",
+											"type": "text"
+										},
+										{
+											"key": "k4alamat3",
+											"value": "k4alamat3 123",
+											"type": "text"
+										},
+										{
+											"key": "k4alamat4",
+											"value": "k4alamat4 123",
+											"type": "text"
+										},
+										{
+											"key": "k4alamat5",
+											"value": "k4alamat5 123",
+											"type": "text"
+										},
+										{
+											"key": "k4kota",
+											"value": "k4kota 123",
+											"type": "text"
+										},
+										{
+											"key": "k4propinsi",
+											"value": "k4propinsi 123",
+											"type": "text"
+										},
+										{
+											"key": "k4kodepos",
+											"value": "k4kodepos 123",
+											"type": "text"
+										},
+										{
+											"key": "k4negara",
+											"value": "k4negara 123",
+											"type": "text"
+										},
+										{
+											"key": "k4kontakperson",
+											"value": "k4kontakperson 123",
+											"type": "text"
+										},
+										{
+											"key": "k4kontaknohp",
+											"value": "k4kontaknohp 123",
+											"type": "text"
+										},
+										{
+											"key": "k4kontakemail",
+											"value": "k4kontakemail 123",
+											"type": "text"
+										},
+										{
+											"key": "k4notelp1",
+											"value": "k4notelp1 123",
+											"type": "text"
+										},
+										{
+											"key": "k4notelp2",
+											"value": "k4notelp2 123",
+											"type": "text"
+										},
+										{
+											"key": "k4nofax",
+											"value": "k4nofax 123",
+											"type": "text"
+										},
+										{
+											"key": "k4email",
+											"value": "k4email 123",
+											"type": "text"
+										},
+										{
+											"key": "k4website",
+											"value": "k4website 123",
+											"type": "text"
+										},
+										{
+											"key": "knpwp",
+											"value": "knpwp 123",
+											"type": "text"
+										},
+										{
+											"key": "kpkp",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kbatashutang",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kterminbeli",
+											"value": "kterminbeli 123",
+											"type": "text"
+										},
+										{
+											"key": "krekhutang",
+											"value": "krekhutang 123",
+											"type": "text"
+										},
+										{
+											"key": "kbagpembelian",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kfobbeli",
+											"value": "kfobbeli 123",
+											"type": "text"
+										},
+										{
+											"key": "kviabeli",
+											"value": "kviabeli 123",
+											"type": "text"
+										},
+										{
+											"key": "kbataspiutang",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kterminjual",
+											"value": "kterminjual 123",
+											"type": "text"
+										},
+										{
+											"key": "krekpiutang",
+											"value": "krekpiutang 123",
+											"type": "text"
+										},
+										{
+											"key": "kbagpenjualan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ktingkatjual",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kfobjual",
+											"value": "kfobjual 123",
+											"type": "text"
+										},
+										{
+											"key": "kviajual",
+											"value": "kviajual 123",
+											"type": "text"
+										},
+										{
+											"key": "ktglkontrak",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "kbank",
+											"value": "kbank 123",
+											"type": "text"
+										},
+										{
+											"key": "knorekening",
+											"value": "knorekening 123",
+											"type": "text"
+										},
+										{
+											"key": "kjeniskelamin",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kmatauang",
+											"value": "kmatauang 123",
+											"type": "text"
+										},
+										{
+											"key": "ktgllahir",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ktglnikah",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "kkomisikode",
+											"value": "kkomisikode 123",
+											"type": "text"
+										},
+										{
+											"key": "kkomisipenjualan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcatatan",
+											"value": "kcatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "kinputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kinputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext1",
+											"value": "kcustomtext1 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext2",
+											"value": "kcustomtext2 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext3",
+											"value": "kcustomtext3 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext4",
+											"value": "kcustomtext4 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext5",
+											"value": "kcustomtext5 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext6",
+											"value": "kcustomtext6 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext7",
+											"value": "kcustomtext7 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext8",
+											"value": "kcustomtext8 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext9",
+											"value": "kcustomtext9 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomtext10",
+											"value": "kcustomtext10 123",
+											"type": "text"
+										},
+										{
+											"key": "kcustomint1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcustomint2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcustomint3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcustomdbl1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcustomdbl2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcustomdbl3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kcustomdate1",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "kcustomdate2",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "kcustomdate3",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ksinkron",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kdownloaded",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "khargacustom",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "kpajakcustom",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ktotalpiutang",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ktotalhutang",
+											"value": "0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/contact/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"contact",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"kkode\":\"kkode 456\",\"knama\":\"knama 456\",\"kkategori\":\"kkategori 456\",\"kkategorinama\":\"kkategorinama 456\",\"kcabang\":\"kcabang 456\",\"kcabangnama\":\"kcabangnama 456\",\"klokasi\":\"klokasi 456\",\"klokasinama\":\"klokasinama 456\",\"kgudang\":\"kgudang 456\",\"kgudangnama\":\"kgudangnama 456\",\"kkategorisalesman\":\"kkategorisalesman 456\",\"kkategorisalesmannama\":\"kkategorisalesmannama 456\",\"karea\":\"karea 456\",\"kareanama\":\"kareanama 456\",\"kkategoricustomer\":\"kkategoricustomer 456\",\"kkategoricustomernama\":\"kkategoricustomernama 456\",\"kkategorisupplier\":\"kkategorisupplier 456\",\"kkategorisuppliernama\":\"kkategorisuppliernama 456\",\"kdivisi\":\"kdivisi 456\",\"kdivisinama\":\"kdivisinama 456\",\"ksubdivisi\":\"ksubdivisi 456\",\"ksubdivisinama\":\"ksubdivisinama 456\",\"ksalesman\":\"0\",\"ksalesmannama\":\"ksalesmannama 456\",\"kkontakperson\":\"kkontakperson 456\",\"kterminglobal\":\"0\",\"kaktif\":\"0\",\"kaktiftgl\":\"{{timestamp}}\",\"k1alamat1\":\"k1alamat1 456\",\"k1alamat2\":\"k1alamat2 456\",\"k1alamat3\":\"k1alamat3 456\",\"k1alamat4\":\"k1alamat4 456\",\"k1alamat5\":\"k1alamat5 456\",\"k1kota\":\"k1kota 456\",\"k1propinsi\":\"k1propinsi 456\",\"k1kodepos\":\"k1kodepos 456\",\"k1negara\":\"k1negara 456\",\"k1kontakperson\":\"k1kontakperson 456\",\"k1kontaknohp\":\"k1kontaknohp 456\",\"k1kontakemail\":\"k1kontakemail 456\",\"k1notelp1\":\"k1notelp1 456\",\"k1notelp2\":\"k1notelp2 456\",\"k1nofax\":\"k1nofax 456\",\"k1email\":\"k1email 456\",\"k1website\":\"k1website 456\",\"k2alamat1\":\"k2alamat1 456\",\"k2alamat2\":\"k2alamat2 456\",\"k2alamat3\":\"k2alamat3 456\",\"k2alamat4\":\"k2alamat4 456\",\"k2alamat5\":\"k2alamat5 456\",\"k2propinsi\":\"k2propinsi 456\",\"k2kota\":\"k2kota 456\",\"k2kodepos\":\"k2kodepos 456\",\"k2negara\":\"k2negara 456\",\"k2kontakperson\":\"k2kontakperson 456\",\"k2kontaknohp\":\"k2kontaknohp 456\",\"k2kontakemail\":\"k2kontakemail 456\",\"k2notelp1\":\"k2notelp1 456\",\"k2notelp2\":\"k2notelp2 456\",\"k2nofax\":\"k2nofax 456\",\"k2email\":\"k2email 456\",\"k2website\":\"k2website 456\",\"k3alamat1\":\"k3alamat1 456\",\"k3alamat2\":\"k3alamat2 456\",\"k3alamat3\":\"k3alamat3 456\",\"k3alamat4\":\"k3alamat4 456\",\"k3alamat5\":\"k3alamat5 456\",\"k3kota\":\"k3kota 456\",\"k3propinsi\":\"k3propinsi 456\",\"k3kodepos\":\"k3kodepos 456\",\"k3negara\":\"k3negara 456\",\"k3kontakperson\":\"k3kontakperson 456\",\"k3kontaknohp\":\"k3kontaknohp 456\",\"k3kontakemail\":\"k3kontakemail 456\",\"k3notelp1\":\"k3notelp1 456\",\"k3notelp2\":\"k3notelp2 456\",\"k3nofax\":\"k3nofax 456\",\"k3email\":\"k3email 456\",\"k3website\":\"k3website 456\",\"k4alamat1\":\"k4alamat1 456\",\"k4alamat2\":\"k4alamat2 456\",\"k4alamat3\":\"k4alamat3 456\",\"k4alamat4\":\"k4alamat4 456\",\"k4alamat5\":\"k4alamat5 456\",\"k4kota\":\"k4kota 456\",\"k4propinsi\":\"k4propinsi 456\",\"k4kodepos\":\"k4kodepos 456\",\"k4negara\":\"k4negara 456\",\"k4kontakperson\":\"k4kontakperson 456\",\"k4kontaknohp\":\"k4kontaknohp 456\",\"k4kontakemail\":\"k4kontakemail 456\",\"k4notelp1\":\"k4notelp1 456\",\"k4notelp2\":\"k4notelp2 456\",\"k4nofax\":\"k4nofax 456\",\"k4email\":\"k4email 456\",\"k4website\":\"k4website 456\",\"knpwp\":\"knpwp 456\",\"kpkp\":\"0\",\"kbatashutang\":\"0\",\"kterminbeli\":\"kterminbeli 456\",\"krekhutang\":\"krekhutang 456\",\"kbagpembelian\":\"0\",\"kfobbeli\":\"kfobbeli 456\",\"kviabeli\":\"kviabeli 456\",\"kbataspiutang\":\"0\",\"kterminjual\":\"kterminjual 456\",\"krekpiutang\":\"krekpiutang 456\",\"kbagpenjualan\":\"0\",\"ktingkatjual\":\"0\",\"kfobjual\":\"kfobjual 456\",\"kviajual\":\"kviajual 456\",\"ktglkontrak\":\"{{timestamp}}\",\"kbank\":\"kbank 456\",\"knorekening\":\"knorekening 456\",\"kjeniskelamin\":\"0\",\"kmatauang\":\"kmatauang 456\",\"ktgllahir\":\"{{timestamp}}\",\"ktglnikah\":\"{{timestamp}}\",\"kkomisikode\":\"kkomisikode 456\",\"kkomisipenjualan\":\"0\",\"kcatatan\":\"kcatatan 456\",\"kmodifikasiuser\":\"0\",\"kmodifikasitgl\":\"{{timestamp}}\",\"kcustomtext1\":\"kcustomtext1 456\",\"kcustomtext2\":\"kcustomtext2 456\",\"kcustomtext3\":\"kcustomtext3 456\",\"kcustomtext4\":\"kcustomtext4 456\",\"kcustomtext5\":\"kcustomtext5 456\",\"kcustomtext6\":\"kcustomtext6 456\",\"kcustomtext7\":\"kcustomtext7 456\",\"kcustomtext8\":\"kcustomtext8 456\",\"kcustomtext9\":\"kcustomtext9 456\",\"kcustomtext10\":\"kcustomtext10 456\",\"kcustomint1\":\"0\",\"kcustomint2\":\"0\",\"kcustomint3\":\"0\",\"kcustomdbl1\":\"0\",\"kcustomdbl2\":\"0\",\"kcustomdbl3\":\"0\",\"kcustomdate1\":\"{{timestamp}}\",\"kcustomdate2\":\"{{timestamp}}\",\"kcustomdate3\":\"{{timestamp}}\",\"ksinkron\":\"0\",\"kdownloaded\":\"0\",\"khargacustom\":\"0\",\"kpajakcustom\":\"0\",\"ktotalpiutang\":\"0\",\"ktotalhutang\":\"0\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/contact/kid123?param=kid{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"contact",
+										"kid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "kid{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/contact?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"contact"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/contact/showById/kid123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"contact",
+										"showById",
+										"kid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/contact/kid123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"contact",
+										"kid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Color",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ckode",
+											"value": "ckode123",
+											"type": "text"
+										},
+										{
+											"key": "cnama",
+											"value": "cnama 123",
+											"type": "text"
+										},
+										{
+											"key": "ccatatan",
+											"value": "ccatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "caktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext1",
+											"value": "ccustomtext1 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext2",
+											"value": "ccustomtext2 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext3",
+											"value": "ccustomtext3 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext4",
+											"value": "ccustomtext4 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomtext5",
+											"value": "ccustomtext5 123",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomint3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdbl3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate1",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate2",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "ccustomdate3",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "cindexbarcode",
+											"value": "cindexbarcode 123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/color/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"color",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"cnama\":\"cnama 456\",\"ccatatan\":\"ccatatan 456\",\"caktif\":\"0\",\"cmodifikasiuser\":\"0\",\"cmodifikasitgl\":\"{{timestamp}}\",\"ccustomtext1\":\"ccustomtext1 456\",\"ccustomtext2\":\"ccustomtext2 456\",\"ccustomtext3\":\"ccustomtext3 456\",\"ccustomtext4\":\"ccustomtext4 456\",\"ccustomtext5\":\"ccustomtext5 456\",\"ccustomint1\":\"0\",\"ccustomint2\":\"0\",\"ccustomint3\":\"0\",\"ccustomdbl1\":\"0\",\"ccustomdbl2\":\"0\",\"ccustomdbl3\":\"0\",\"ccustomdate1\":\"{{timestamp}}\",\"ccustomdate2\":\"{{timestamp}}\",\"ccustomdate3\":\"{{timestamp}}\",\"cindexbarcode\":\"cindexbarcode 456\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/color/ckode123?param=ckode{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"color",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "ckode{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/color?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"color"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/color/showById/ckode123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"color",
+										"showById",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/color/ckode123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"color",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Country",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ckode",
+											"value": "ckode123",
+											"type": "text"
+										},
+										{
+											"key": "cnama",
+											"value": "cnama 123",
+											"type": "text"
+										},
+										{
+											"key": "ccatatan",
+											"value": "ccatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "caktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "cinputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/country/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"country",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"cnama\":\"cnama 456\",\"ccatatan\":\"ccatatan 456\",\"caktif\":\"0\",\"cmodifikasiuser\":\"0\",\"cmodifikasitgl\":\"{{timestamp}}\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/country/ckode123?param=ckode{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"country",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "ckode{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/country?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"country"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/country/showById/ckode123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"country",
+										"showById",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/country/ckode123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"country",
+										"ckode123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "Insert",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bid",
+											"value": "bid123",
+											"type": "text"
+										},
+										{
+											"key": "bkode",
+											"value": "bkode 123",
+											"type": "text"
+										},
+										{
+											"key": "bnama",
+											"value": "bnama 123",
+											"type": "text"
+										},
+										{
+											"key": "bnamaalias1",
+											"value": "bnamaalias1 123",
+											"type": "text"
+										},
+										{
+											"key": "bnamaalias2",
+											"value": "bnamaalias2 123",
+											"type": "text"
+										},
+										{
+											"key": "bnamaalias3",
+											"value": "bnamaalias3 123",
+											"type": "text"
+										},
+										{
+											"key": "bnamaalias4",
+											"value": "bnamaalias4 123",
+											"type": "text"
+										},
+										{
+											"key": "bnamaalias5",
+											"value": "bnamaalias5 123",
+											"type": "text"
+										},
+										{
+											"key": "btipe",
+											"value": "btipe 123",
+											"type": "text"
+										},
+										{
+											"key": "bjenis",
+											"value": "bjenis 123",
+											"type": "text"
+										},
+										{
+											"key": "bjenisdetail",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bkategori",
+											"value": "bkategori 123",
+											"type": "text"
+										},
+										{
+											"key": "bkelasproduk",
+											"value": "bkelasproduk 123",
+											"type": "text"
+										},
+										{
+											"key": "bretur",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "btag",
+											"value": "btag 123",
+											"type": "text"
+										},
+										{
+											"key": "bketerangan",
+											"value": "bketerangan 123",
+											"type": "text"
+										},
+										{
+											"key": "bsatuan",
+											"value": "bsatuan 123",
+											"type": "text"
+										},
+										{
+											"key": "bnilaisatuan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bsatuandefault",
+											"value": "bsatuandefault 123",
+											"type": "text"
+										},
+										{
+											"key": "bnilaisatuandefault",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhpp",
+											"value": "bhpp 123",
+											"type": "text"
+										},
+										{
+											"key": "bcabang",
+											"value": "bcabang 123",
+											"type": "text"
+										},
+										{
+											"key": "blokasi",
+											"value": "blokasi 123",
+											"type": "text"
+										},
+										{
+											"key": "bdivisi",
+											"value": "bdivisi 123",
+											"type": "text"
+										},
+										{
+											"key": "bsubdivisi",
+											"value": "bsubdivisi 123",
+											"type": "text"
+										},
+										{
+											"key": "bdepartemen",
+											"value": "bdepartemen 123",
+											"type": "text"
+										},
+										{
+											"key": "bsubdepartemen",
+											"value": "bsubdepartemen 123",
+											"type": "text"
+										},
+										{
+											"key": "bgudang",
+											"value": "bgudang 123",
+											"type": "text"
+										},
+										{
+											"key": "bproyek",
+											"value": "bproyek 123",
+											"type": "text"
+										},
+										{
+											"key": "bsubitem",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bsubitemdari",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bbarcode",
+											"value": "bbarcode 123",
+											"type": "text"
+										},
+										{
+											"key": "bsuplier",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "baktif",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "baktiftgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "bstokminimal",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bstokmaksimal",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "breorder",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bminorder",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bjmlorderbeli",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bjmlorderjual",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bkategoriumur",
+											"value": "bkategoriumur 123",
+											"type": "text"
+										},
+										{
+											"key": "bstatusmoving",
+											"value": "bstatusmoving 123",
+											"type": "text"
+										},
+										{
+											"key": "bsifatharga",
+											"value": "bsifatharga 123",
+											"type": "text"
+										},
+										{
+											"key": "bpromo",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bpromoberlaku",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "bkl",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bkp",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bpajakbeli",
+											"value": "bpajakbeli 123",
+											"type": "text"
+										},
+										{
+											"key": "bpajakjual",
+											"value": "bpajakjual 123",
+											"type": "text"
+										},
+										{
+											"key": "bhargabeli",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhppaverage",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual1",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual2",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual3",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual4",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual5",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual1",
+											"value": "bdiskonjual1 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual2",
+											"value": "bdiskonjual2 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual3",
+											"value": "bdiskonjual3 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual4",
+											"value": "bdiskonjual4 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual5",
+											"value": "bdiskonjual5 123",
+											"type": "text"
+										},
+										{
+											"key": "bstok",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bkomisi",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bmarginminimal",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "brekpersediaan",
+											"value": "brekpersediaan 123",
+											"type": "text"
+										},
+										{
+											"key": "brekpenjualan",
+											"value": "brekpenjualan 123",
+											"type": "text"
+										},
+										{
+											"key": "brekreturpenjualan",
+											"value": "brekreturpenjualan 123",
+											"type": "text"
+										},
+										{
+											"key": "brekdiskonpenjualan",
+											"value": "brekdiskonpenjualan 123",
+											"type": "text"
+										},
+										{
+											"key": "brekhargapokok",
+											"value": "brekhargapokok 123",
+											"type": "text"
+										},
+										{
+											"key": "brekreturpembelian",
+											"value": "brekreturpembelian 123",
+											"type": "text"
+										},
+										{
+											"key": "brekdiskonpembelian",
+											"value": "brekdiskonpembelian 123",
+											"type": "text"
+										},
+										{
+											"key": "brekkonsinyasi",
+											"value": "brekkonsinyasi 123",
+											"type": "text"
+										},
+										{
+											"key": "bapanjang",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "balebar",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "batinggi",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bavolume",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "baberat",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bawarna",
+											"value": "bawarna 123",
+											"type": "text"
+										},
+										{
+											"key": "baoem",
+											"value": "baoem 123",
+											"type": "text"
+										},
+										{
+											"key": "bamerk",
+											"value": "bamerk 123",
+											"type": "text"
+										},
+										{
+											"key": "baukuran",
+											"value": "baukuran 123",
+											"type": "text"
+										},
+										{
+											"key": "bamodel",
+											"value": "bamodel 123",
+											"type": "text"
+										},
+										{
+											"key": "bakelas",
+											"value": "bakelas 123",
+											"type": "text"
+										},
+										{
+											"key": "bserial",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bbatch",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bpengganti",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bgambar",
+											"value": "bgambar 123",
+											"type": "text"
+										},
+										{
+											"key": "burutan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bcustom1",
+											"value": "bcustom1 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom2",
+											"value": "bcustom2 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom3",
+											"value": "bcustom3 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom4",
+											"value": "bcustom4 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom5",
+											"value": "bcustom5 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom6",
+											"value": "bcustom6 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom7",
+											"value": "bcustom7 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom8",
+											"value": "bcustom8 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom9",
+											"value": "bcustom9 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom10",
+											"value": "bcustom10 123",
+											"type": "text"
+										},
+										{
+											"key": "bcustom11",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bcustom12",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bcustom13",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bcustom14",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bcustom15",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bcatatan",
+											"value": "bcatatan 123",
+											"type": "text"
+										},
+										{
+											"key": "binputuser",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "binputtgl",
+											"value": "{{timestamp}}",
+											"type": "text"
+										},
+										{
+											"key": "bedithpp",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bmobile",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bassembly",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bdownloaded",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bjmllapangan",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bsatuanlapangan",
+											"value": "bsatuanlapangan 123",
+											"type": "text"
+										},
+										{
+											"key": "bsubkelas",
+											"value": "bsubkelas 123",
+											"type": "text"
+										},
+										{
+											"key": "bmaterial",
+											"value": "bmaterial 123",
+											"type": "text"
+										},
+										{
+											"key": "bsection",
+											"value": "bsection 123",
+											"type": "text"
+										},
+										{
+											"key": "bvendor",
+											"value": "bvendor 123",
+											"type": "text"
+										},
+										{
+											"key": "bdesigner",
+											"value": "bdesigner 123",
+											"type": "text"
+										},
+										{
+											"key": "basset",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual6",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual7",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual8",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual9",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bhargajual10",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual6",
+											"value": "bdiskonjual6 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual7",
+											"value": "bdiskonjual7 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual8",
+											"value": "bdiskonjual8 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual9",
+											"value": "bdiskonjual9 123",
+											"type": "text"
+										},
+										{
+											"key": "bdiskonjual10",
+											"value": "bdiskonjual10 123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f1/item/insert?param={\"target\":\"insertData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"item",
+										"insert"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"insertData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"bkode\":\"bkode 456\",\"bnama\":\"bnama 456\",\"bnamaalias1\":\"bnamaalias1 456\",\"bnamaalias2\":\"bnamaalias2 456\",\"bnamaalias3\":\"bnamaalias3 456\",\"bnamaalias4\":\"bnamaalias4 456\",\"bnamaalias5\":\"bnamaalias5 456\",\"btipe\":\"btipe 456\",\"bjenis\":\"bjenis 456\",\"bjenisdetail\":\"0\",\"bkategori\":\"bkategori 456\",\"bkelasproduk\":\"bkelasproduk 456\",\"bretur\":\"0\",\"btag\":\"btag 456\",\"bketerangan\":\"bketerangan 456\",\"bsatuan\":\"bsatuan 456\",\"bnilaisatuan\":\"0\",\"bsatuandefault\":\"bsatuandefault 456\",\"bnilaisatuandefault\":\"0\",\"bhpp\":\"bhpp 456\",\"bcabang\":\"bcabang 456\",\"blokasi\":\"blokasi 456\",\"bdivisi\":\"bdivisi 456\",\"bsubdivisi\":\"bsubdivisi 456\",\"bdepartemen\":\"bdepartemen 456\",\"bsubdepartemen\":\"bsubdepartemen 456\",\"bgudang\":\"bgudang 456\",\"bproyek\":\"bproyek 456\",\"bsubitem\":\"0\",\"bsubitemdari\":\"0\",\"bbarcode\":\"bbarcode 456\",\"bsuplier\":\"0\",\"baktif\":\"0\",\"baktiftgl\":\"{{timestamp}}\",\"bstokminimal\":\"0\",\"bstokmaksimal\":\"0\",\"breorder\":\"0\",\"bminorder\":\"0\",\"bjmlorderbeli\":\"0\",\"bjmlorderjual\":\"0\",\"bkategoriumur\":\"bkategoriumur 456\",\"bstatusmoving\":\"bstatusmoving 456\",\"bsifatharga\":\"bsifatharga 456\",\"bpromo\":\"0\",\"bpromoberlaku\":\"{{timestamp}}\",\"bkl\":\"0\",\"bkp\":\"0\",\"bpajakbeli\":\"bpajakbeli 456\",\"bpajakjual\":\"bpajakjual 456\",\"bhargabeli\":\"0\",\"bhppaverage\":\"0\",\"bhargajual1\":\"0\",\"bhargajual2\":\"0\",\"bhargajual3\":\"0\",\"bhargajual4\":\"0\",\"bhargajual5\":\"0\",\"bdiskonjual1\":\"bdiskonjual1 456\",\"bdiskonjual2\":\"bdiskonjual2 456\",\"bdiskonjual3\":\"bdiskonjual3 456\",\"bdiskonjual4\":\"bdiskonjual4 456\",\"bdiskonjual5\":\"bdiskonjual5 456\",\"bstok\":\"0\",\"bkomisi\":\"0\",\"bmarginminimal\":\"0\",\"brekpersediaan\":\"brekpersediaan 456\",\"brekpenjualan\":\"brekpenjualan 456\",\"brekreturpenjualan\":\"brekreturpenjualan 456\",\"brekdiskonpenjualan\":\"brekdiskonpenjualan 456\",\"brekhargapokok\":\"brekhargapokok 456\",\"brekreturpembelian\":\"brekreturpembelian 456\",\"brekdiskonpembelian\":\"brekdiskonpembelian 456\",\"brekkonsinyasi\":\"brekkonsinyasi 456\",\"bapanjang\":\"0\",\"balebar\":\"0\",\"batinggi\":\"0\",\"bavolume\":\"0\",\"baberat\":\"0\",\"bawarna\":\"bawarna 456\",\"baoem\":\"baoem 456\",\"bamerk\":\"bamerk 456\",\"baukuran\":\"baukuran 456\",\"bamodel\":\"bamodel 456\",\"bakelas\":\"bakelas 456\",\"bserial\":\"0\",\"bbatch\":\"0\",\"bpengganti\":\"0\",\"bgambar\":\"bgambar 456\",\"burutan\":\"0\",\"bcustom1\":\"bcustom1 456\",\"bcustom2\":\"bcustom2 456\",\"bcustom3\":\"bcustom3 456\",\"bcustom4\":\"bcustom4 456\",\"bcustom5\":\"bcustom5 456\",\"bcustom6\":\"bcustom6 456\",\"bcustom7\":\"bcustom7 456\",\"bcustom8\":\"bcustom8 456\",\"bcustom9\":\"bcustom9 456\",\"bcustom10\":\"bcustom10 456\",\"bcustom11\":\"0\",\"bcustom12\":\"0\",\"bcustom13\":\"0\",\"bcustom14\":\"0\",\"bcustom15\":\"0\",\"bcatatan\":\"bcatatan 456\",\"bmodifikasiuser\":\"0\",\"bmodifikasitgl\":\"{{timestamp}}\",\"bedithpp\":\"0\",\"bmobile\":\"0\",\"bassembly\":\"0\",\"bdownloaded\":\"0\",\"bjmllapangan\":\"0\",\"bsatuanlapangan\":\"bsatuanlapangan 456\",\"bsubkelas\":\"bsubkelas 456\",\"bmaterial\":\"bmaterial 456\",\"bsection\":\"bsection 456\",\"bvendor\":\"bvendor 456\",\"bdesigner\":\"bdesigner 456\",\"basset\":\"0\",\"bhargajual6\":\"0\",\"bhargajual7\":\"0\",\"bhargajual8\":\"0\",\"bhargajual9\":\"0\",\"bhargajual10\":\"0\",\"bdiskonjual6\":\"bdiskonjual6 456\",\"bdiskonjual7\":\"bdiskonjual7 456\",\"bdiskonjual8\":\"bdiskonjual8 456\",\"bdiskonjual9\":\"bdiskonjual9 456\",\"bdiskonjual10\":\"bdiskonjual10 456\"}"
+								},
+								"url": {
+									"raw": "{{url}}/f1/item/bid123?param=bid{\"target\":\"updateData\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"item",
+										"bid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "bid{\"target\":\"updateData\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/item?param={\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"item"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\n    \"target\":\"show\",\n    \"pageNumber\":1,\n    \"pageLimit\":3,\n\t\"filter\":\"\",\n\t\"orderBy\":\"\",\n\t\"groupBy\": \"\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/item/showById/bid123?param={\"target\":\"showById\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"item",
+										"showById",
+										"bid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"showById\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f1/item/bid123?param={\"target\":\"delete\"}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f1",
+										"item",
+										"bid123"
+									],
+									"query": [
+										{
+											"key": "param",
+											"value": "{\"target\":\"delete\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F2 - Finance And Accounting",
+			"item": [
+				{
+					"name": "Cr",
+					"item": [
+						{
+							"name": "Simpan",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "userid",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "isUpdate",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "target",
+											"value": "insertData",
+											"type": "text"
+										},
+										{
+											"key": "utama",
+											"value": "{\"crid\":\"54\", \"crcabang\":\"KI\", \"crlokasi\":\"I\", \"crsumber\":\"CR\", \"crautonotransaksi\":\"1\", \"crnotransaksi\":\"WIPCR20190145\", \"crtgl\":\"2019-01-15\", \"crkodepa\":\"19\", \"crkontak\":\"1\", \"crkontakperson\":\"\", \"crnorek\":\"110101.001\", \"cruraian\":\"Plastik Pembungkus\", \"crcatatan\":\"\", \"crmatauang\":\"IDR\", \"crkurs\":\"1\", \"crjumlah\":\"1500000\", \"crjumlahvalas\":\"0\", \"crjumlahbayar\":\"0\", \"crjumlahbayarvalas\":\"0\", \"crstatusbayar\":\"0\", \"crtgllunas\":\"1971-01-01\", \"crstatus\":\"2\", \"crstatussebelumnya\":\"0\", \"crjmlrevisi\":\"1\", \"crcetakanke\":\"0\", \"crisclose\":\"0\", \"crinputuser\":\"1\", \"crinputtgl\":\"2019-01-17\", \"crmodifikasiuser\":\"1\", \"crmodifikasitgl\":\"2019-05-23\", \"crposting\":\"1\",  \"crpostingtgl\":\"1971-01-01\", \"crcustomtext1\":\"\", \"crcustomtext2\":\"\", \"crcustomtext3\":\"\", \"crcustomtext4\":\"\", \"crcustomtext5\":\"\", \"crcustomint1\":\"0\", \"crcustomint2\":\"0\", \"crcustomint3\":\"0\", \"crcustomdbl1\":\"0\", \"crcustomdbl2\":\"0\", \"crcustomdbl3\":\"0\", \"crcustomdate1\":\"1971-01-01\", \"crcustomdate2\":\"1971-01-01\", \"crcustomdate3\":\"1971-01-01\"}",
+											"type": "text"
+										},
+										{
+											"key": "detail",
+											"value": "[{\"idcrdetail\":\"0\", \"idcr\":\"0\", \"norek\":\"110101.001\", \"matauang\":\"IDR\", \"kurs\":\"1\", \"jumlah\":\"500000\", \"jumlahvalas\":\"0\", \"catatan\":\"\", \"costcenter\":\"\", \"divisi\":\"\", \"subdivisi\":\"\", \"proyek\":\"\", \"urutan\":\"1\", \"isclose\":\"0\", \"customtext1\":\"\", \"customtext2\":\"\", \"customtext3\":\"\", \"customdbl1\":\"0\", \"customdbl2\":\"0\", \"customdbl3\":\"0\", \"customdate1\":\"1971-01-01\", \"customdate2\":\"1971-01-01\", \"customdate3\":\"1971-01-01\"},{\"idcrdetail\":\"0\", \"idcr\":\"0\", \"norek\":\"110101.001\", \"matauang\":\"IDR\", \"kurs\":\"1\", \"jumlah\":\"500000\", \"jumlahvalas\":\"0\", \"catatan\":\"\", \"costcenter\":\"\", \"divisi\":\"\", \"subdivisi\":\"\", \"proyek\":\"\", \"urutan\":\"2\", \"isclose\":\"0\", \"customtext1\":\"\", \"customtext2\":\"\", \"customtext3\":\"\", \"customdbl1\":\"0\", \"customdbl2\":\"0\", \"customdbl3\":\"0\", \"customdate1\":\"1971-01-01\", \"customdate2\":\"1971-01-01\", \"customdate3\":\"1971-01-01\"}]",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/f2/cr/insert",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f2",
+										"cr",
+										"insert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Status",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f2/cr/updateStatus/54?nilaistatus=0&userid=1&target=Update Status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f2",
+										"cr",
+										"updateStatus",
+										"54"
+									],
+									"query": [
+										{
+											"key": "nilaistatus",
+											"value": "0"
+										},
+										{
+											"key": "userid",
+											"value": "1"
+										},
+										{
+											"key": "target",
+											"value": "Update Status"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f2/cr/delete?userid=1&target=Delete&idtransaksi=48",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f2",
+										"cr",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "userid",
+											"value": "1"
+										},
+										{
+											"key": "target",
+											"value": "Delete"
+										},
+										{
+											"key": "idtransaksi",
+											"value": "48"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetDataById",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f2/cr/getDataById?target=getDataById&idtransaksi=47",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f2",
+										"cr",
+										"getDataById"
+									],
+									"query": [
+										{
+											"key": "target",
+											"value": "getDataById"
+										},
+										{
+											"key": "idtransaksi",
+											"value": "47"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e392eae4-9a82-45d5-9713-aafd8cf9b8c6",
+										"exec": [
+											"pm.globals.set(\"timestamp\", require('moment')().format('YYYY-MM-DD H:mm:ss'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/f2/cr/search?target=getDataById&filter=&orderBy=crid DESC&groupBy=&pageNumber=1&limit=20",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"f2",
+										"cr",
+										"search"
+									],
+									"query": [
+										{
+											"key": "target",
+											"value": "getDataById"
+										},
+										{
+											"key": "filter",
+											"value": ""
+										},
+										{
+											"key": "orderBy",
+											"value": "crid DESC"
+										},
+										{
+											"key": "groupBy",
+											"value": ""
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F3 - Warehouse And Inventory",
+			"item": [],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F4 - Purchasing",
+			"item": [],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "F5 - Sales",
+			"item": [],
+			"description": "Untuk login",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b84c531-59c9-41e1-ac4b-fb3684044b21",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"tgl\", (new Date()).toISOString());"
+						]
+					}
+				}
+			]
+		}
+	]
+}
