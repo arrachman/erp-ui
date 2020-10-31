@@ -177,7 +177,7 @@ module.exports = options => ({
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
-    extensions: ['.js', '.jsx', '.react.js'],
+    extensions: ['.js', '.jsx', '.react.js','svg'],
     mainFields: ['browser', 'jsnext:main', 'main'],
     alias: {
       'fix-help': path.resolve(__dirname, '../../app/components/HelpFix'),
