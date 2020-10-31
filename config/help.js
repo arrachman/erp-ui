@@ -22,7 +22,7 @@ const tc = async(tryFunc, req, result, line, filename, param) => {
         const token = req.headers.token;
         
         // var decoded = jwt.verify(token, process.env.SECRET);
-        res.data = decoded;
+        // res.data = decodesd;
         // respond = res.fail('Need Login', 401)
         respond = await tryFunc(req, param)
         // if(Object.keys(tokenList).length == 0) {
