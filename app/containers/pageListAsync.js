@@ -1,7 +1,7 @@
 import Loadable from 'react-loadable';
 import Loading from 'dan-components/Loading';
 
-// F1
+// F1 q
 export const F1_Area = Loadable({loader: () => import('./F1/Area'), loading: Loading,});
 export const F1_Bank = Loadable({loader: () => import('./F1/Bank'), loading: Loading,});
 export const F1_Branch = Loadable({loader: () => import('./F1/Branch'), loading: Loading,});

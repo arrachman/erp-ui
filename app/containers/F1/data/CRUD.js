@@ -130,6 +130,7 @@ class CRUD extends React.Component
     const { dataColumn, inputFilter } = params;
     page = this.props.page;
     limit = this.props.limit;
+    console.log('initValues', initValues)
     return (
       <div id="divCRUD" ref={this.setTextInputRef}>
         <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
