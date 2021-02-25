@@ -40,7 +40,7 @@ class CompSearch extends React.Component
     this.state = {
       target: props.target,
       txtsearch: props.txtsearch, dataTable: List([]), title: '',
-      header: '', notifMsg: '',  count:0, page:1, limit:4, last_page:1
+      header: '', notifMsg: '',  count:0, page:1, limit:4, lastPage:1
     }
   }
   
@@ -62,7 +62,7 @@ class CompSearch extends React.Component
     // CLOSING
     if(this.props.open && !nextProps.open)
     {
-      this.setState({title: '', header: [], dataTable: fromJS([]), count: 1, page: 1, limit: 1, last_page: 1, txtsearch: ''});
+      this.setState({title: '', header: [], dataTable: fromJS([]), count: 1, page: 1, limit: 1, lastPage: 1, txtsearch: ''});
       return false;
     }
 
@@ -292,7 +292,7 @@ class CompSearch extends React.Component
         }
         break;
       case 'PageDown': 
-        if(this.state.page < this.state.last_page)
+        if(this.state.page < this.state.lastPage)
         {
           this.showDataPage(parseInt(this.state.page)+1)
         }
@@ -301,7 +301,7 @@ class CompSearch extends React.Component
         this.showDataPage(1)
         break;
       case 'End': 
-        this.showDataPage(this.state.last_page)
+        this.showDataPage(this.state.lastPage)
         break;
     }
   }
@@ -367,7 +367,7 @@ class CompSearch extends React.Component
         }
         break;
       case 'PageDown': 
-        if(this.state.page < this.state.last_page)
+        if(this.state.page < this.state.lastPage)
         {
           this.showDataPage(parseInt(this.state.page)+1)
         }
@@ -394,8 +394,13 @@ class CompSearch extends React.Component
       switch(target)
       {
         case 'txtsearch':
-          let dataTable = data.data;
-          let no = (dataTable.current_page*dataTable.per_page)-dataTable.per_page;
+          let dataTable = data.send.data.data;
+          let pagination = dataTable.pagination;
+          let title = data.send.data.title;
+          let header = data.send.data.header;
+          // console.log('data', data)
+          console.log('dataTable', dataTable)
+          let no = (pagination.currentPage*pagination.perPage)-pagination.perPage;
           dataTable.data.map((val, i) => {
             dataTable.data[i]['no'] = (i+1+no);
           });
@@ -403,26 +408,26 @@ class CompSearch extends React.Component
           if(init)
           {
             this.setState({
-              title: data.title || '', 
-              header: data.header || [], 
+              title: title || '', 
+              header: header || [], 
               dataTable: fromJS(dataTable.data)  || fromJS([]),
-              count: dataTable.total || 1,
-              page: dataTable.current_page || 1,
-              limit: dataTable.per_page || 1,
-              last_page: (dataTable.last_page==0) ? 1 : dataTable.last_page,
+              count: pagination.total || 1,
+              page: pagination.currentPage || 1,
+              limit: pagination.perPage || 1,
+              lastPage: (dataTable.lastPage==0) ? 1 : pagination.lastPage,
               txtsearch: this.props.current || ''
             });
           }
           else
           {
             this.setState({
-              title: data.title || '', 
-              header: data.header || [], 
+              title: title || '', 
+              header: header || [], 
               dataTable: fromJS(dataTable.data) || fromJS([]),
-              count: dataTable.total || 1,
-              page: dataTable.current_page || 1,
-              limit: dataTable.per_page || 1,
-              last_page: (dataTable.last_page==0) ? 1 : dataTable.last_page,
+              count: pagination.total || 1,
+              page: pagination.currentPage || 1,
+              limit: pagination.perPage || 1,
+              lastPage: (pagination.lastPage==0) ? 1 : pagination.lastPage,
             });
           }
           break;
@@ -432,7 +437,7 @@ class CompSearch extends React.Component
     {
       this.setState({
         dataTable: List([]), title: '',
-        header: '', notifMsg: '',  count:0, page:1, limit:4, last_page:1
+        header: '', notifMsg: '',  count:0, page:1, limit:4, lastPage:1
       });
     }
   }
@@ -456,7 +461,7 @@ class CompSearch extends React.Component
   render()
   {
     const { classes } = this.props;
-    const { title, header, dataTable, page, last_page } = this.state;
+    const { title, header, dataTable, page, lastPage } = this.state;
     const childDataColumn = [<option key={'All'} value='All'>All</option>]; 
     let label, value;
     for(let i in header)
@@ -577,7 +582,7 @@ class CompSearch extends React.Component
           </DialogContent>
           
           <div style={{marginTop: '-20px', width: '75%'}}>
-            <Pagination curpage={page} totpages={last_page} boundaryPagesRange={1} siblingPagesRange={1} hideEllipsis={false} onChange={this.showDataPage}/> 
+            <Pagination curpage={page} totpages={lastPage} boundaryPagesRange={1} siblingPagesRange={1} hideEllipsis={false} onChange={this.showDataPage}/> 
           </div>
           <DialogActions style={{margin: 0, padding: 0, marginTop: '-35px'}}>
             {/* <Button onClick={this.focusTable} color="primary">

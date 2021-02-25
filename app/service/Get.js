@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {Onlineroot, RootPath} from './Config';
+import {urlPath} from './Config';
 
-const Get = (path, root) => {
+const Get = (module, path, root) => {
     const promise = new Promise ((resolve, reject) => {
         let dataHeader = {headers: {
             'Authorization': `Bearer ${localStorage.getItem("fixToken")}`,
@@ -9,7 +9,7 @@ const Get = (path, root) => {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
         }};
-        axios({method:'get', url:`${root ? Onlineroot : RootPath }/${path}`}, dataHeader)
+        axios({method:'get', url:`${urlPath(module)}${path}`}, dataHeader)
         .then((result)=> {
             resolve(result.data);
         }, (err) => {

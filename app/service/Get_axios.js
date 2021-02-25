@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {Onlineroot, RootPath} from './Config';
+import {urlPath} from './Config';
 
-const Get_axios = (path, root) => {
-    return axios({method:'get', url:`${root ? Onlineroot : RootPath }/${path}`}, {headers: {
+const Get_axios = (module, path, root) => {
+    return axios({method:'get', url:`${urlPath(module)}${path}`}, {headers: {
         'Authorization': `Bearer ${localStorage.getItem("fixToken")}`,
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*',

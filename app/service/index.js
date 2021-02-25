@@ -10,22 +10,22 @@ import moment from "moment";
 // POST
 const postNewsBlog = (data) => Post('posts', false, data);
 const login = (data, target) => Post('f0/auth/login', true, data, target);
-const INSERT_DATA_AXIOS = (source, data, param) => INSERT_AXIOS(`f1/${source}${param}`, true, data);
+const INSERT_DATA_AXIOS = (source, data, param) => INSERT_AXIOS(`f1`,`/${source}${param}`, data);
 
 // PUT
 const updateNewsBlog = (data, id) => Put(`posts/${id}`, false, data);
-const UPDATE_DATA_AXIOS = (source, id, data, param) => UPDATE_AXIOS(`f1/${source}/${id}${param}`, true, data);
+const UPDATE_DATA_AXIOS = (source, id, data, param) => UPDATE_AXIOS(`f1`,`/${source}/${id}${param}`, data);
 
 // Delete
 const deleteNewsBlog = (id) => Delete(`posts/${id}`, false);
-const DELETE_DATA_AXIOS = (source, id, param) => DELETE_AXIOS(`f1/${source}/${id}${param}`, true);
+const DELETE_DATA_AXIOS = (source, id, param) => DELETE_AXIOS(`f1`,`/${source}/${id}${param}`);
 
 // GET
 const getNewsBlog = () => Get('posts?_sort=id&_order=desc', false);
 const getComments = () => Get('comments', true);
 const getProfile = () => Get('api/users/profile', true);
-const getDataArea = (param) => Get(`f1/city${param}`, true);
-const getData_axios = (source, param) => Get_axios(`f1/${source}${param}`, true);
+const getDataArea = (param) => Get(`f1`,`/city${param}`, true);
+const getData_axios = (source, param) => Get_axios(`f1`,`/${source}${param}`, true);
 const logout = (target) => Get(`f0/auth/logout?param={"target":"${target}"}`, true);
 const fetchSelfApiAREA = params => {
     let param = {
@@ -147,15 +147,16 @@ const REMOVE_DATA = params => {
 }
 
 const SAVE_TRANSACTION = params => {
+  console.log('params', params)
   return new Promise((resolve, reject) => {
-    INSERT_AXIOS(`f2/${params.source}/insert`, true, params).then(res => 
+    INSERT_AXIOS(`f2`,`/${params.source}/insert`, params).then(res => 
     {
-      alert(res.data);
+      resolve(res.data);
     },
     (err) => 
     {
       console.log(`err API: ${JSON.stringify(err.response.data)}`);
-      alert(err.response.data);
+      alert(err.response.data.msguser);
     });
   });
 }

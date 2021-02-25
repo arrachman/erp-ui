@@ -7,6 +7,7 @@ const Post = (path, root, data, target) => {
             'Authorization': `Bearer ${localStorage.getItem("fixToken")}`,
             'Accept': 'application/json',
         }};
+        console.log('post data', data)
         axios.post(`${root ? Onlineroot : RootPath }/${path}?param={"target":"${target}"}`, data, dataHeader)
         .then((res)=> {
             resolve(res);

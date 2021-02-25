@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {Onlineroot, RootPath} from './Config';
+import {urlPath} from './Config';
 
-export const Delete = (path, root) => {
+export const Delete = (module, path) => {
     const promise = new Promise ((resolve, reject) => {
-        axios.delete(`${root ? Onlineroot : RootPath }/${path}`)
+        axios.delete(`${urlPath(module)}${path}`)
         .then((result)=> {
             resolve(result.data);
         }, (err) => {
@@ -17,8 +17,8 @@ export const Delete = (path, root) => {
 }
 
 
-export const DELETE_AXIOS = (path, root) => {
-    return axios({method:'delete', url:`${root ? Onlineroot : RootPath }/${path}`}, {headers: {
+export const DELETE_AXIOS = (module, path) => {
+    return axios({method:'delete', url:`${urlPath(module)}${path}`}, {headers: {
         'Authorization': `Bearer ${localStorage.getItem("fixToken")}`,
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*',

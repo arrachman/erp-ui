@@ -500,7 +500,7 @@ class DataGrid extends React.Component
     if(rowFocus === row && col === colFocus)
     {
       ref['td' + rowFocus  + colFocus].className = classes.tdhover;
-      ref['td' + rowFocus  + colFocus].focus();
+      // ref['td' + rowFocus  + colFocus].focus();
     }
   }
   

@@ -30,7 +30,8 @@ export const TextInput = ({type,id,label,error,value,onChange,width,className,on
       <input style={{width: `${width}px`, fontFamily: 'inherit'}} 
           id={id}
           className="text-input"
-          type={type} defaultValue={value || ''} ref={setRef || null} onChange={onChange} onKeyDown={onKeyDown} autoFocus={autoFocus || true} {...props}/>
+          type={type} defaultValue={value || ''} 
+          ref={setRef || null} onChange={onChange} onKeyDown={onKeyDown} autoFocus={autoFocus || true} {...props}/>
         <InputFeedback error={error} />
       </div>
     </div>
@@ -88,6 +89,7 @@ export class TbLabelSearch extends React.Component
 
   openCompSearch = () =>
   {
+    console.log('this.props 2', this.props)
     const { id, searchFilter, handleOpenDialog, idDg } = this.props;
     const { csfilter: filter, source } = searchFilter(idDg);
     handleOpenDialog(source, id, '', idDg, filter);
@@ -141,6 +143,7 @@ export class TxtSearch extends React.Component
       }
       else
       {
+        console.log('this.props 3', this.props)
         const { id, searchFilter } = this.props;
         const { apifilter: filter, source } = searchFilter(id);
 
@@ -169,6 +172,7 @@ export class TxtSearch extends React.Component
       this.props.SetVariable({success: false, target: this.props.id, data: []});
     }
 
+    console.log('this.props 4', this.props)
     const { id, searchFilter } = this.props;
     const { apifilter: filter, source } = searchFilter(id);
 
@@ -184,7 +188,7 @@ export class TxtSearch extends React.Component
       switch(target)
       {
         case 'txtsearch':
-          if(data.data.total === 0)
+          if(data && data.data && data.data.total === 0)
           {
             if(this.blur)
             {
@@ -236,6 +240,7 @@ export class TxtSearch extends React.Component
 
   openCompSearch = (val) =>
   {
+    console.log('this.props 5', this.props)
     const { id, searchFilter, handleOpenDialog } = this.props;
     const { csfilter: filter, source } = searchFilter(id);
     handleOpenDialog(source, id, val || '', '', filter);
@@ -252,7 +257,10 @@ export class TxtSearch extends React.Component
           <input style={{width: `${width}px`, fontFamily: 'inherit'}} 
               id={id} tabIndex={tabIndex}
               className="text-input"
-              type='text' defaultValue={this.props.value || ''} value={this.state.val} ref={this.setRef}
+              type='text' 
+              // defaultValue={this.props.value || ''} 
+              value={this.state.val || ''} 
+              ref={this.setRef}
               onKeyDown={this.handleKeyInput} 
               onChange={this.handleChange} 
               // onKeyDown={(e) => onKeyDown(e, this.state.val || '')}
@@ -333,6 +341,7 @@ export class TbTextInput extends React.Component
 
   openCompSearch = () =>
   {
+    console.log('this.props 1', this.props)
     const { id, searchFilter, handleOpenDialog, idDg } = this.props;
     const { csfilter: filter, source } = searchFilter(idDg);
     handleOpenDialog(source, id, '', idDg, filter);
@@ -382,7 +391,7 @@ export class TbTextInput extends React.Component
       switch(target)
       {
         case 'txtsearch':
-          if(data.data.total === 0)
+          if(data && data.data && data.data.total === 0)
           {
             this.openCompSearch(this.state.val);
           }
@@ -410,8 +419,8 @@ export class TbTextInput extends React.Component
         id={id}
         className="tb-text-input"
         type="text"
-        defaultValue={this.props.value || ''} 
-        value={this.state.val}
+        // defaultValue={this.props.value || ''} 
+        value={this.state.val || ''}
         ref={setRef || null}
         onChange={(e) => {this.setState({val:e.target.value || ''});onUpdate(e.target.value || '')}} 
         onKeyDown={this.handleKeyDown}
