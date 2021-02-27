@@ -89,7 +89,6 @@ export class TbLabelSearch extends React.Component
 
   openCompSearch = () =>
   {
-    console.log('this.props 2', this.props)
     const { id, searchFilter, handleOpenDialog, idDg } = this.props;
     const { csfilter: filter, source } = searchFilter(idDg);
     handleOpenDialog(source, id, '', idDg, filter);
@@ -143,7 +142,6 @@ export class TxtSearch extends React.Component
       }
       else
       {
-        console.log('this.props 3', this.props)
         const { id, searchFilter } = this.props;
         const { apifilter: filter, source } = searchFilter(id);
 
@@ -172,7 +170,6 @@ export class TxtSearch extends React.Component
       this.props.SetVariable({success: false, target: this.props.id, data: []});
     }
 
-    console.log('this.props 4', this.props)
     const { id, searchFilter } = this.props;
     const { apifilter: filter, source } = searchFilter(id);
 
@@ -182,7 +179,7 @@ export class TxtSearch extends React.Component
 
   API_Result = (param) =>
   {
-    const {success, data, target} = param;
+    const {success, data, target, msguser} = param;
     if(success)
     {
       switch(target)
@@ -211,7 +208,9 @@ export class TxtSearch extends React.Component
       switch(target)
       {
         case 'txtsearch':
-            this.props.SetVariable({success: false, target: this.props.id, data: []});
+          if(msguser == 'Data not found')
+            this.openCompSearch(this.state.val);
+          this.props.SetVariable({success: false, target: this.props.id, data: []});
           break;
       }
     }
@@ -240,7 +239,6 @@ export class TxtSearch extends React.Component
 
   openCompSearch = (val) =>
   {
-    console.log('this.props 5', this.props)
     const { id, searchFilter, handleOpenDialog } = this.props;
     const { csfilter: filter, source } = searchFilter(id);
     handleOpenDialog(source, id, val || '', '', filter);
@@ -341,7 +339,6 @@ export class TbTextInput extends React.Component
 
   openCompSearch = () =>
   {
-    console.log('this.props 1', this.props)
     const { id, searchFilter, handleOpenDialog, idDg } = this.props;
     const { csfilter: filter, source } = searchFilter(idDg);
     handleOpenDialog(source, id, '', idDg, filter);
@@ -385,7 +382,7 @@ export class TbTextInput extends React.Component
 
   API_Result = (param) =>
   {
-    const {success, data, target} = param;
+    const {success, data, target, msguser} = param;
     if(success)
     {
       switch(target)
@@ -405,6 +402,8 @@ export class TbTextInput extends React.Component
       switch(target)
       {
         case 'txtsearch':
+          if(msguser == 'Data not found')
+            this.openCompSearch('');
           break;
       }
     }

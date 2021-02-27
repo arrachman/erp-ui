@@ -39,7 +39,7 @@ class CompSearch extends React.Component
     ref.tb = React.createRef();
     this.state = {
       target: props.target,
-      txtsearch: props.txtsearch, dataTable: List([]), title: '',
+      txtsearch: props.txtsearch || '', dataTable: List([]), title: '',
       header: '', notifMsg: '',  count:0, page:1, limit:4, lastPage:1
     }
   }
@@ -53,6 +53,7 @@ class CompSearch extends React.Component
     if(!this.props.open && nextProps.open)
     {
       init = true;
+      this.setState({txtsearch: (current)?current:''});
       API.GETDATA_COMPSEARCH({target: 'txtsearch', filter, filterSearch: (current)?current:'', page:1, limit: 10, source, operator: 'contains', column: 'All'}).then(this['API_Result']);  
     } 
   }
@@ -62,7 +63,8 @@ class CompSearch extends React.Component
     // CLOSING
     if(this.props.open && !nextProps.open)
     {
-      this.setState({title: '', header: [], dataTable: fromJS([]), count: 1, page: 1, limit: 1, lastPage: 1, txtsearch: ''});
+      console.log(' --- close')
+      this.setState({title: '', header: [], dataTable: fromJS([]), count: 1, page: 1, limit: 1, lastPage: 1, txtsearch: 'aa'});
       return false;
     }
 
@@ -380,26 +382,26 @@ class CompSearch extends React.Component
   
   showDataPage = (page) => 
   {
-    const { source } = this.props;
+    const { source, filter } = this.props;
     let column = ref.cmbcolumn[ref.cmbcolumn.selectedIndex].value;
     let operator = ref.cmboperator[ref.cmboperator.selectedIndex].value;
-    API.GETDATA_COMPSEARCH({target:'txtsearch', filter:'', filterSearch: ref.txtsearch.value, page, limit: 10, source, operator, column}).then(this['API_Result']);    
+    API.GETDATA_COMPSEARCH({target:'txtsearch', filter:filter, filterSearch: ref.txtsearch.value, page, limit: 10, source, operator, column}).then(this['API_Result']);    
   }
 
   API_Result = (param) =>
   {
     const {success, data, target} = param;
+    console.log('param', this.props)
     if(success)
     {
       switch(target)
       {
         case 'txtsearch':
-          let dataTable = data.send.data.data;
+          let dataTable = data.data;
           let pagination = dataTable.pagination;
-          let title = data.send.data.title;
-          let header = data.send.data.header;
+          let title = data.title;
+          let header = data.header;
           // console.log('data', data)
-          console.log('dataTable', dataTable)
           let no = (pagination.currentPage*pagination.perPage)-pagination.perPage;
           dataTable.data.map((val, i) => {
             dataTable.data[i]['no'] = (i+1+no);
@@ -435,6 +437,7 @@ class CompSearch extends React.Component
     }
     else
     {
+      console.log('aaa')
       this.setState({
         dataTable: List([]), title: '',
         header: '', notifMsg: '',  count:0, page:1, limit:4, lastPage:1
@@ -561,6 +564,7 @@ class CompSearch extends React.Component
                 </select>
               </div>
               <div style={{height: '20px', marginLeft: '10px', width: `calc(100% - 50px - 130px - 130px)`}}>
+                {console.log('this.state.txtsearch 2', this.state)}
                 <CompInput tabIndex={83} keyProp={83} setRef={this.setRef} val={this.state.txtsearch}
                   onBlur={(value) => this.handleBlur('txtsearch', value)} id='txtsearch'
                   onKeyDown={this.searchKeyDown}/>
@@ -607,6 +611,7 @@ class CompInput extends React.Component
   constructor(props, context) 
   {
     super(props, context);
+    console.log('propss', props)
     this.state = {val: props.val || '', blur:true}
   }
 
@@ -614,6 +619,7 @@ class CompInput extends React.Component
   {
     if(init)
     {
+      console.log('nextProps', nextProps)
       init = false;
       this.setState({val:nextProps.val || ''});
     }

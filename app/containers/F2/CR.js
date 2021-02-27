@@ -102,7 +102,6 @@ class CR extends Component
     this.setFocus(ref.txtterimadari);
     let computedStyle = getComputedStyle(ref.divRoot);
     ref.width = computedStyle.width - 20;
-    // console.log(computedStyle.width);
   }
 
   setFocus = id =>
@@ -442,7 +441,6 @@ class CR extends Component
 
   API_Result = (param) =>
   {
-    console.log('paam api result', param)
     const {success, data, target} = param;
     if(success)
     {

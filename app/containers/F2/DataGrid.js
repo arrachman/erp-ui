@@ -356,7 +356,6 @@ class DataGrid extends React.Component
                 }
                 else
                 {
-                  console.log('aa')
                   for(let i=rowFocus ; i<dg.length; i++)
                   {
                     dg[i].no = (parseInt(i) + 1);
