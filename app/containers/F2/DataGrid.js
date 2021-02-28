@@ -599,15 +599,91 @@ class DataGrid extends React.Component
           valItem = dg[row][column[col].item];
           if(row == rowFocus && col == colFocus && this.state['editing' + row + col] && column[col].edit)
           {
-            itemsContent.push(
-              <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
-                value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
-                onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+            switch(column[col].itemEditor)
+            {
+              case 'nominal': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)} align="right" editor="nominal"
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'date': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'discount': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)} align="right" editor="nominal"
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'number': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)} align="right" editor="number"
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'numericStepper': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'search': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'comboBox': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'custom': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'searchBarcode': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'dinamis': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              case 'multiline': 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+                  break;
+              default: 
+                itemsContent.push(
+                  <TbTextInput id={'tbtxt' + row + col} type="text" width="100%" key={'ii' + row + col} tabIndex={99} searchFilter={searchFilter} idDg={column[col].item}
+                    value={valItem} onUpdate={(val) => this.handleUpdate(val, row, col)} onBlur={(value) => this.handleBlur(row, col, value)}
+                    onKeyDown={(e, value, def) => this.tdOnKeyDown(e, row, col, value)} SetVariable={SetVariable} handleOpenDialog={handleOpenDialog}/>);
+            }
           }
           else
           {
             switch(column[col].labelRender)
             {
+              case 'currency': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} value={valItem} width={column[col].width} type="currency" />);break;
+              case 'number': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} value={valItem} width={column[col].width} type="number" />);break;
+              case 'date': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} value={valItem} width={column[col].width} />);break;
+              case 'justOneRow': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} value={valItem} width={column[col].width} />);break;
+              case 'dateTime': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} value={valItem} width={column[col].width} />);break;
+              case 'currencyPOS': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} value={valItem} width={column[col].width} />);break;
               case 'search': itemsContent.push(<TbLabelSearch handleOpenDialog={handleOpenDialog} classes={classes} id={'tbtxt' + row + col} key={'ii' + row + col} idDg={column[col].item} value={valItem} searchFilter={searchFilter} width={column[col].width} />);break;
               case 'center': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} align='center' value={valItem} width={column[col].width} />);break;
               case 'right': itemsContent.push(<TbLabel id={'tbtxt' + row + col} key={'ii' + row + col} align='right' value={valItem} width={column[col].width} />);break;

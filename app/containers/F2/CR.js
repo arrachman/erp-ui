@@ -35,17 +35,17 @@ class CR extends Component
                   txturaian: '', txtkurs: '', txttanggal: ''}
     this.grid = 
     [
-      {header: 'No', width: '60', item: 'no', require: false, edit: false, visible: true, skip: true, labelRender: 'center', itemRender: ''},
-      {header: 'No Akun', width: '180', item: 'noakun', require: true, edit: true, visible: true, skip: false, labelRender: 'search', itemRender: 'search'},
-      {header: 'Nama Akun', width: '200', item: 'namaakun', require: false, edit: true, visible: true, skip: true, labelRender: '', itemRender: ''},
-      {header: 'Amount', width: '120', item: 'amount', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: ''},
-      {header: 'Foreign Amount', width: '120', item: 'foreignamount', require: false, edit: true, visible: true, skip: true, labelRender: 'nominal', itemRender: 'nominal'},
-      {header: 'Note', width: '300', item: 'note', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: ''},
-      {header: 'Cost Center', width: '120', item: 'costcenter', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: ''},
-      {header: 'Divisi', width: '120', item: 'divisi', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: ''},
-      {header: 'Sub Divisi', width: '120', item: 'subdivisi', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: ''},
-      {header: 'Proyek', width: '120', item: 'proyek', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: ''},
-      {header: 'Custom 1', width: '120', item: 'custom1', require: false, edit: true, visible: true, skip: true, labelRender: '', itemRender: ''},
+      {header: 'No', width: '60', item: 'no', require: false, edit: false, visible: true, skip: true, labelRender: 'center', itemRender: '', itemEditor: '', headerRender: '', itemEditor: '', headerRender: ''},
+      {header: 'No Akun', width: '180', item: 'noakun', require: true, edit: true, visible: true, skip: false, labelRender: 'search', itemRender: 'search', itemEditor: '', headerRender: ''},
+      {header: 'Nama Akun', width: '200', item: 'namaakun', require: false, edit: true, visible: true, skip: true, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
+      {header: 'Amount', width: '120', item: 'amount', require: false, edit: true, visible: true, skip: false, labelRender: 'currency', itemRender: '', itemEditor: 'nominal', headerRender: ''},
+      {header: 'Foreign Amount', width: '120', item: 'foreignamount', require: false, edit: true, visible: true, skip: true, labelRender: 'currency', itemRender: 'nominal', itemEditor: 'nominal', headerRender: ''},
+      {header: 'Note', width: '300', item: 'note', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
+      {header: 'Cost Center', width: '120', item: 'costcenter', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
+      {header: 'Divisi', width: '120', item: 'divisi', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
+      {header: 'Sub Divisi', width: '120', item: 'subdivisi', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
+      {header: 'Proyek', width: '120', item: 'proyek', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
+      {header: 'Custom 1', width: '120', item: 'custom1', require: false, edit: true, visible: true, skip: true, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
     ];
 
     this.progress = [

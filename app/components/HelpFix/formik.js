@@ -324,11 +324,22 @@ export const ComboBox = ({id,label,error,value,toolTip, onChange,width,className
   );
 };
 
-export const TbLabel = ({value,width, align}) => 
+export const TbLabel = ({value,width, align, type}) => 
 {
   value = value || '';
-  if(( value.length * 7) >= width)
-    value = value.substr(0, Math.floor(width/6)-1 )
+  switch(type){
+    case 'number':
+        value = formatMoney(value, 0);
+        return (<div style={{ paddingRight: (!align) && '10px', textAlign: 'right'}}>{value}</div>);
+      break;
+    case 'currency':
+        value = formatMoney(value);
+        return (<div style={{ paddingRight: (!align) && '10px', textAlign: 'right'}}>{value}</div>);
+      break;
+    default:
+      if(( value.length * 7) >= width)
+        value = value.substr(0, Math.floor(width/6)-1 )
+  }
   return (<div style={{ paddingLeft: (!align) && '10px', textAlign: align}}>{value}</div>);
 };
 
@@ -412,9 +423,14 @@ export class TbTextInput extends React.Component
 
   render() 
   {
-    const {id,value,onChange,width,onKeyDown,setRef,onBlur,onUpdate, ...props} = this.props;
+    const {id,value,onChange,width,onKeyDown,setRef,onBlur,onUpdate, align, editor, ...props} = this.props;
+    if(editor == "nominal")
+      setInputFilter(document.getElementById(id), function(value) {return /^-?\d*[.,]?\d*$/.test(value); });
+    else if(editor == "number")
+      setInputFilter(document.getElementById(id), function(value) {return /^-?\d*$/.test(value); });
+      
     return (
-      <input style={{width: width, padding: '.7rem', paddingTop:'.8rem', paddingLeft:'.6rem', fontFamily: 'inherit', height:'50px'}}
+      <input style={{width: width, padding: '.7rem', paddingTop:'.8rem', paddingLeft:'.6rem', fontFamily: 'inherit', height:'50px', textAlign: align?align:'left'}}
         id={id}
         className="tb-text-input"
         type="text"
@@ -474,3 +490,53 @@ export const DisplayFormikState = props =>
       <strong>props</strong> = {JSON.stringify(props, null, 2)}
     </pre>
   </div>;
+
+export function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+    try {
+      decimalCount = Math.abs(decimalCount);
+      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+  
+      const negativeSign = amount < 0 ? "-" : "";
+  
+      let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+      let j = (i.length > 3) ? i.length % 3 : 0;
+  
+      return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
+  // Restricts input for the given textbox to the given inputFilter.
+const setInputFilter = (textbox, inputFilter) => {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox && textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  });
+}
+
+// Install input filters.
+// // Integer
+// setInputFilter(document.getElementById("intTextBox"), function(value) {return /^-?\d*$/.test(value); });
+// // Integer >= 0
+// setInputFilter(document.getElementById("uintTextBox"), function(value) {return /^\d*$/.test(value); });
+// // Integer >= 0 and <= 500
+// setInputFilter(document.getElementById("intLimitTextBox"), function(value) {return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500); });
+// // Float (use . or , as decimal separator)	
+// setInputFilter(document.getElementById("floatTextBox"), function(value) {return /^-?\d*[.,]?\d*$/.test(value); });
+// // Currency (at most two decimal places)	
+// setInputFilter(document.getElementById("currencyTextBox"), function(value) {return /^-?\d*[.,]?\d{0,2}$/.test(value); });
+// // A-Z only	
+// setInputFilter(document.getElementById("latinTextBox"), function(value) {return /^[a-z]*$/i.test(value); });
+// //Hexadecimal
+// setInputFilter(document.getElementById("hexTextBox"), function(value) {return /^[0-9a-f]*$/i.test(value); });

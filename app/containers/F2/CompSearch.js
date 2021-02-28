@@ -564,7 +564,6 @@ class CompSearch extends React.Component
                 </select>
               </div>
               <div style={{height: '20px', marginLeft: '10px', width: `calc(100% - 50px - 130px - 130px)`}}>
-                {console.log('this.state.txtsearch 2', this.state)}
                 <CompInput tabIndex={83} keyProp={83} setRef={this.setRef} val={this.state.txtsearch}
                   onBlur={(value) => this.handleBlur('txtsearch', value)} id='txtsearch'
                   onKeyDown={this.searchKeyDown}/>
