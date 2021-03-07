@@ -589,6 +589,7 @@ class DataGrid extends React.Component
     const dg = this.props.data;
     let itemsRow = [], itemsCol = [], itemsContent;  
     let lastTabIndex = 9, valItem = '';
+    console
     for (let row = 0;row<dg.length; row++)
     {
       itemsCol = [];

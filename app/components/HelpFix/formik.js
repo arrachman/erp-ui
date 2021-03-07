@@ -380,7 +380,16 @@ export const TbLabel = ({value,width, align, type}) =>
 
 export class TbTextInput extends React.Component 
 {
-  state = {val: ''}
+  constructor(props) {
+    super(props);
+
+    this.state = {val: props.value || ''}
+  }
+
+  componentWillReceiveProps = (nextProps) =>
+  {
+    this.setState({val:nextProps.value});
+  }
 
   openCompSearch = () =>
   {
@@ -454,10 +463,9 @@ export class TbTextInput extends React.Component
     }
   }
 
-
   render() 
   {
-    const {id,value,onChange,width,onKeyDown,setRef,onBlur,onUpdate, align, editor, ...props} = this.props;
+    const {id,onChange,width,onKeyDown,setRef,onBlur,onUpdate, align, editor} = this.props;
     if(editor == "nominal")
       setInputFilter(document.getElementById(id), function(value) {return /^-?\d*[.,]?\d*$/.test(value); });
     else if(editor == "number")
@@ -474,14 +482,23 @@ export class TbTextInput extends React.Component
         onChange={(e) => {this.setState({val:e.target.value || ''});onUpdate(e.target.value || '')}} 
         onKeyDown={this.handleKeyDown}
         onBlur={() => onBlur(this.state.val || '')}
-        autoFocus={true} {...props} />
+        autoFocus={true} />
       );
   }
 }
 
 class TbTextSearchComp extends React.Component 
 {
-  state = {val: '', blur:true}
+  constructor(props) {
+    super(props);
+
+    this.state = {val: props.value || '', blur:true}
+  }
+
+  componentWillReceiveProps = (nextProps) =>
+  {
+    this.setState({val:nextProps.value});
+  }
 
   render() 
   {
