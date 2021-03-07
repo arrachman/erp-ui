@@ -63,7 +63,6 @@ class CompSearch extends React.Component
     // CLOSING
     if(this.props.open && !nextProps.open)
     {
-      console.log(' --- close')
       this.setState({title: '', header: [], dataTable: fromJS([]), count: 1, page: 1, limit: 1, lastPage: 1, txtsearch: 'aa'});
       return false;
     }
@@ -391,7 +390,6 @@ class CompSearch extends React.Component
   API_Result = (param) =>
   {
     const {success, data, target} = param;
-    console.log('param', this.props)
     if(success)
     {
       switch(target)
@@ -437,7 +435,6 @@ class CompSearch extends React.Component
     }
     else
     {
-      console.log('aaa')
       this.setState({
         dataTable: List([]), title: '',
         header: '', notifMsg: '',  count:0, page:1, limit:4, lastPage:1
@@ -610,7 +607,6 @@ class CompInput extends React.Component
   constructor(props, context) 
   {
     super(props, context);
-    console.log('propss', props)
     this.state = {val: props.val || '', blur:true}
   }
 
@@ -618,7 +614,6 @@ class CompInput extends React.Component
   {
     if(init)
     {
-      console.log('nextProps', nextProps)
       init = false;
       this.setState({val:nextProps.val || ''});
     }

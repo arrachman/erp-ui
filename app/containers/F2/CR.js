@@ -505,6 +505,8 @@ class CR extends Component
     
     if(dg.focus)
     dg.focus.focus();
+
+    console.log('state', this.state)
     return (
       <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
         <div id='divRoot'  ref={this.setRef}>

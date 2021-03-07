@@ -2,7 +2,6 @@ import axios from 'axios';
 import {urlPath} from './Config';
 
 export const INSERT_AXIOS = (module, path, data) => {
-    console.log('insert data', data)
     return axios({method:'POST', url:`${urlPath(module)}${path}`, data:data}, {headers: {
         'Authorization': `Bearer ${localStorage.getItem("fixToken")}`,
         'Accept': 'application/json'
