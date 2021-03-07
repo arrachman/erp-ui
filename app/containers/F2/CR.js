@@ -19,6 +19,7 @@ import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import "./CR_CSS.css";
 import { API } from '../../service';
+import { dateNow } from '../../service';
 
 let ref    = {};
 let Rendering = true;
@@ -32,7 +33,7 @@ class CR extends Component
     
     this.focus = {};
     this.state = {openDialog:false, dgData: [{no: 1}], txtmatauang: 'IDR',
-                  txturaian: '', txtkurs: '', txttanggal: '', txtnotransaksi_auto: true,
+                  txturaian: '', txtkurs: '', txttanggal: dateNow(), txtnotransaksi_auto: true,
                   txtnotransaksi: 'auto'}
     this.grid = 
     [
@@ -479,7 +480,6 @@ class CR extends Component
     
     if(dg.focus)
     dg.focus.focus();
-    
     return (
       <div id='divRoot'  ref={this.setRef}>
         <Helmet>
@@ -512,7 +512,7 @@ class CR extends Component
             </Grid>
             <Grid item xs={12} sm={5}>
               <div style={{width: '300px', float: 'right'}}>
-              <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} type='date' width='200' marginLabel='100px' id='txttanggal' label='Tanggal' onKeyDown={this.handleKeyTanggal} setRef={this.setRef} placeholder=''  value={this.state['txttanggal']} />
+              <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} type='date' width='200' marginLabel='100px' id='txttanggal' label='Tanggal' onKeyDown={this.handleKeyTanggal} onChange={this.handleKeyTanggal} setRef={this.setRef} placeholder=''  value={this.state['txttanggal']} />
               <TxtNoTransaksi tabIndex={++lastTabIndex} key={lastTabIndex} width='140' marginLabel='100px' id='txtnotransaksi' label='No Transaksi' setRef={this.setRef} placeholder=''  value={this.state['txtnotransaksi']} auto={this.state.txtnotransaksi_auto} />
               <Grid container>
                 <Grid item xs={12} sm={8}>

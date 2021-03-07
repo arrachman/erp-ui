@@ -301,7 +301,8 @@ export const mapToObj = (data) =>
 }
 
 export const defaultDate = "1971-01-01 00:00:00"
-export const dateNow = () => {return moment().format('YYYY-MM-DD H:mm:ss')}
+export const dateNow = () => {return moment().format('YYYY-MM-DD')}
+export const dateTimeNow = () => {return moment().format('YYYY-MM-DD H:mm:ss')}
 
 export const initialItem = (keyTemplate, anchor) => {
   const [...rawKey] = keyTemplate.keys();

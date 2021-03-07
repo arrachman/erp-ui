@@ -4,7 +4,7 @@ import { TextInput, Yup, Formik } from 'fix-help/formik';
 import { Map } from 'immutable';
 import css from 'dan-styles/Form.scss';
 import "fix-help/formik.css";
-import { dateNow, formatDate } from '../../../service';
+import { dateTimeNow, formatDate } from '../../../service';
 
 class Form extends Component 
 {
@@ -35,7 +35,7 @@ class Form extends Component
       if(editingId === '')
       {
         if(col.indexOf('inputtgl') === 1)
-          item = item.set(col, dateNow())
+          item = item.set(col, dateTimeNow())
   
         if(col.indexOf('inputuser') === 1)
           item = item.set(col, '1')
@@ -43,7 +43,7 @@ class Form extends Component
       else
       {
         if(col.indexOf('modifikasitgl') === 1)
-          item = item.set(col, dateNow())
+          item = item.set(col, dateTimeNow())
 
         if(col.indexOf('modifikasiuser') === 1)
           item = item.set(col, '1')
