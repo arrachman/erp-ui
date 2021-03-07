@@ -38,39 +38,68 @@ export const TextInput = ({type,id,label,error,value,onChange,width,className,on
   );
 };
 
-export const TxtInput = ({id,label,error,value,width,className,onChange,onKeyDown,autoFocus,setRef,marginLabel, ...props}) => {
-  value = value || ''
-  const classes = classnames("input-group",{"animated shake error": !!error},className);
-  return (
-    <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0}}>
-      <Label htmlFor={id} error={error} style={{width: marginLabel || '20%', paddingTop: '4px'}}>{label}</Label>
-      <div>
-      <input style={{width: `${width}px`, fontFamily: 'inherit'}} 
-          id={id}
-          className="text-input"
-          type='text' defaultValue={value || ''} ref={setRef || null} onChange={onChange} onKeyDown={onKeyDown} autoFocus={autoFocus || true} {...props}/>
-        <InputFeedback error={error} />
-      </div>
-    </div>
-  );
-};
+export class TxtInput extends React.Component 
+{
+  constructor(props) {
+    super(props);
 
-export const TxtComboBox = ({id,label,error,value,onChange,width,className,onKeyDown,autoFocus,setRef,marginLabel,data, ...props}) => {
-  const classes = classnames("input-group",{"animated shake error": !!error},className);
-  const childData = [];
-  for(let i in data)
-  {
-    childData.push(<option key={data[i].value + '|' + data[i].label} value={data[i].value || ''}>{data[i].label}</option>);
+    this.state = {val: props.value || ''}
   }
-  return (
-    <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0}}>
-      <Label htmlFor={id} error={error} style={{width: marginLabel || '20%'}}>{label}</Label>
-      <select id={id} name={id} className="text-input" style={{height: '35px', width: `${width}px`,cursor:'pointer'}} onKeyDown={onKeyDown} ref={setRef || null} {...props}>
-        {childData}
-      </select>
-    </div>
-  );
-};
+
+  componentWillReceiveProps = (nextProps) =>
+  {
+    this.setState({val:nextProps.value});
+  }
+  
+  render() {
+    const{id,label,error,width,className,onKeyDown,autoFocus,setRef,marginLabel, type} = this.props
+    const classes = classnames("input-group",{"animated shake error": !!error},className);
+    return (
+      <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0}}>
+        <Label htmlFor={id} error={error} style={{width: marginLabel || '20%', paddingTop: '4px'}}>{label}</Label>
+        <div>
+        <input style={{width: `${width}px`, fontFamily: 'inherit'}} 
+            id={id}
+            className="text-input" type={type} {...this.prop}
+             value={this.state.val} ref={setRef || null} onChange={e=>this.setState({val:e.target.value})} onKeyDown={onKeyDown} autoFocus={autoFocus || true}/>
+          <InputFeedback error={error} />
+        </div>
+      </div>
+    );
+  }
+}
+
+export class TxtComboBox extends React.Component 
+{
+  constructor(props) {
+    super(props);
+
+    this.state = {val: props.value || ''}
+  }
+
+  componentWillReceiveProps = (nextProps) =>
+  {
+    this.setState({val:nextProps.value});
+  }
+  
+  render(){
+    const {id,label,error,onChange,width,className,onKeyDown,autoFocus,setRef,marginLabel,data} = this.props
+    const classes = classnames("input-group",{"animated shake error": !!error},className);
+    const childData = [];
+    for(let i in data)
+    {
+      childData.push(<option key={data[i].value + '|' + data[i].label} selected={data[i].value==this.state.val} value={data[i].value || ''}>{data[i].label}</option>);
+    }
+    return (
+      <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0}}>
+        <Label htmlFor={id} error={error} style={{width: marginLabel || '20%'}}>{label}</Label>
+        <select id={id} name={id} className="text-input" style={{height: '35px', width: `${width}px`,cursor:'pointer'}} onChange={onChange} onKeyDown={onKeyDown} ref={setRef || null} autoFocus={true}>
+          {childData}
+        </select>
+      </div>
+    );
+  }
+}
 
 export class TbLabelSearch extends React.Component 
 {

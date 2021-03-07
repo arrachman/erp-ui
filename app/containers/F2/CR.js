@@ -22,6 +22,7 @@ import { API } from '../../service';
 import { dateNow } from '../../service';
 import { HotKeys } from "react-hotkeys";
 import { AlertDialogConfirm } from 'fix-containers/UiElements/demos';
+import createHistory from 'history/createBrowserHistory'
 
 let ref    = {};
 let Rendering = true;
@@ -35,9 +36,12 @@ class CR extends Component
     super(props, context);
     
     this.focus = {};
-    this.state = {openDialog:false, dgData: [{no: 1}], txtmatauang: 'IDR',
-                  txturaian: '', txtkurs: '', txttanggal: dateNow(), txtnotransaksi_auto: true,
-                  txtnotransaksi: 'auto'}
+    this.state = {
+        txtterimadari: '', txtakunkas: '', txturaian: '',  txtkurs: '', 
+        lbltxtterimadari: '', lbltxtakunkas: '', lbltxtkurs: '', txtprogress: 0,
+        penDialog:false, dgData: [{no: 1}], txtmatauang: 'IDR',
+                txttanggal: dateNow(), txtnotransaksi_auto: true,
+                txtnotransaksi: 'auto'} 
     this.grid = 
     [
       {header: 'No', width: '60', item: 'no', require: false, edit: false, visible: true, skip: true, labelRender: 'center', itemRender: '', itemEditor: '', headerRender: '', itemEditor: '', headerRender: ''},
@@ -65,6 +69,7 @@ class CR extends Component
 
   keyMap = {
     ctrl_s: "ctrl+s",
+    ctrl_r: "ctrl+R",
   };
   
   handlers = {
@@ -76,6 +81,21 @@ class CR extends Component
         if(res.ok) 
         {
           this.clickSave();
+        }
+        else
+        {
+        }
+      })
+      event.preventDefault()
+    },
+    ctrl_r: event => 
+    {
+      let message = `Are you sure the data will be reset? ?`;
+      alert.open(message, (res) => 
+      {
+        if(res.ok) 
+        {
+          this.clickReset();
         }
         else
         {
@@ -465,6 +485,12 @@ class CR extends Component
     API.SAVE_TRANSACTION({target, source, userid, isUpdate, main, detail}).then(this['API_Result']);  
   }
 
+  clickReset = () =>
+  {
+    const history = createHistory();
+    history.go(0)
+  }
+
 
   API_Result = (param) =>
   {
@@ -524,7 +550,7 @@ class CR extends Component
               <Typography variant="h6">Cash Receipt</Typography>
             </div> 
             <div className={classes.spacer} />
-            {addIcon('Reset', 'refresh', () => this.showData(''))}
+            {addIcon('Reset', 'refresh', () => this.clickReset(''))}
             {addIcon('Open Transaction', 'folder_open', () => this.showData(''))}
             {addIcon('Save', 'save', () => this.clickSave(''))}
           </Toolbar>
@@ -548,7 +574,7 @@ class CR extends Component
                     <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} width='55' marginLabel='43px' id='txtkurs' label='Kurs' setRef={this.setRef} placeholder=''  value={this.state['txtkurs']} />
                   </Grid>
                 </Grid>
-                <TxtComboBox tabIndex={++lastTabIndex} data={this.progress} key={lastTabIndex} width='200' marginLabel='100px' id='txtprogress' label='Progress' onKeyDown={this.handleKeyProgress} setRef={this.setRef} placeholder=''  value={this.state['txtprogress']} />
+                <TxtComboBox tabIndex={++lastTabIndex} data={this.progress} key={lastTabIndex} width='200' marginLabel='100px' id='txtprogress' label='Progress' onKeyDown={this.handleKeyProgress} onChange={this.handleKeyProgress} setRef={this.setRef} placeholder=''  value={this.state['txtprogress']} />
                 </div>
               </Grid>
             </Grid>
