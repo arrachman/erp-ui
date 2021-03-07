@@ -472,10 +472,9 @@ class DataGrid extends React.Component
   
   handleScroll = () =>
   {
-    if(ref.divTable.scrollLeft <= ref.divHeader.scrollLeftMax)
-      ref.divHeader.scrollLeft = ref.divTable.scrollLeft;
-    else
-      ref.divTable.scrollLeft = ref.divHeader.scrollLeftMax;
+    if(ref && ref.divTable && ref.divHeader) {
+        ref.divHeader.scrollLeft = ref.divTable.scrollLeft;
+    }
   }
   
   setScroll = onScroll =>
