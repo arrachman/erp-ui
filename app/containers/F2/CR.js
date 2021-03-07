@@ -20,10 +20,13 @@ import Typography from '@material-ui/core/Typography';
 import "./CR_CSS.css";
 import { API } from '../../service';
 import { dateNow } from '../../service';
+import { HotKeys } from "react-hotkeys";
+import { AlertDialogConfirm } from 'fix-containers/UiElements/demos';
 
 let ref    = {};
 let Rendering = true;
 let dg = {};
+let alert = {};
 
 class CR extends Component 
 {
@@ -59,6 +62,28 @@ class CR extends Component
 
     this.data = [];
   }
+
+  keyMap = {
+    ctrl_s: "ctrl+s",
+  };
+  
+  handlers = {
+    ctrl_s: event => 
+    {
+      let message = `Data will be saved ?`;
+      alert.open(message, (res) => 
+      {
+        if(res.ok) 
+        {
+          this.clickSave();
+        }
+        else
+        {
+        }
+      })
+      event.preventDefault()
+    },
+  };
 
   setRef = e => {if(e)ref[e.id] = e};
 
@@ -481,59 +506,65 @@ class CR extends Component
     if(dg.focus)
     dg.focus.focus();
     return (
-      <div id='divRoot'  ref={this.setRef}>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="twitter:title" content={title} />
-          <meta property="twitter:description" content={description} />
-        </Helmet>
-        
-        <PapperFix title="CRUD" icon="ios-arrow-round-forward" desc="CRUD">
+      <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
+        <div id='divRoot'  ref={this.setRef}>
+          <Helmet>
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="twitter:title" content={title} />
+            <meta property="twitter:description" content={description} />
+          </Helmet>
+          
+          <PapperFix title="CRUD" icon="ios-arrow-round-forward" desc="CRUD">
 
-        <Toolbar className={classes.toolbar} >
-          <div className={classes.title}>
-            <Typography variant="h6">Cash Receipt</Typography>
-          </div> 
-          <div className={classes.spacer} />
-          {addIcon('Reset', 'refresh', () => this.showData(''))}
-          {addIcon('Open Transaction', 'folder_open', () => this.showData(''))}
-          {addIcon('Save', 'save', () => this.clickSave(''))}
-        </Toolbar>
-        <br />
+          <Toolbar className={classes.toolbar} >
+            <div className={classes.title}>
+              <Typography variant="h6">Cash Receipt</Typography>
+            </div> 
+            <div className={classes.spacer} />
+            {addIcon('Reset', 'refresh', () => this.showData(''))}
+            {addIcon('Open Transaction', 'folder_open', () => this.showData(''))}
+            {addIcon('Save', 'save', () => this.clickSave(''))}
+          </Toolbar>
+          <br />
 
-          <Grid container id='gridContainer' ref={this.setRef}>
-            <Grid item xs={12} sm={7}>
-              <TxtSearch tabIndex={1} key={1} width='170' marginLabel='20%' id='txtterimadari' searchFilter={this.searchFilter} label='Terima Dari' handleOpenDialog={this.handleOpenDialog} onKeyDown={this.handleKeyTerimaDari} onUpdate={this.handleUpdate} setRef={this.setRef} placeholder=''  value={this.state['txtterimadari']} valueName={this.state['lbltxtterimadari']} SetVariable={this.SetVariable}/>
-              <TxtSearch tabIndex={2} key={2} width='170' marginLabel='20%' id='txtakunkas' searchFilter={this.searchFilter} label='Akun Kas [D]' handleOpenDialog={this.handleOpenDialog} onKeyDown={this.handleKeyNavigator} setRef={this.setRef} placeholder=''  onUpdate={this.handleUpdate} value={this.state['txtakunkas']} valueName={this.state['lbltxtakunkas']} SetVariable={this.SetVariable} />
-              <TxtInput tabIndex={3} key={3} width='250' marginLabel='20%' id='txturaian' label='Uraian' setRef={this.setRef} placeholder=''  value={this.state['txturaian']} />
-            </Grid>
-            <Grid item xs={12} sm={5}>
-              <div style={{width: '300px', float: 'right'}}>
-              <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} type='date' width='200' marginLabel='100px' id='txttanggal' label='Tanggal' onKeyDown={this.handleKeyTanggal} onChange={this.handleKeyTanggal} setRef={this.setRef} placeholder=''  value={this.state['txttanggal']} />
-              <TxtNoTransaksi tabIndex={++lastTabIndex} key={lastTabIndex} width='140' marginLabel='100px' id='txtnotransaksi' label='No Transaksi' setRef={this.setRef} placeholder=''  value={this.state['txtnotransaksi']} auto={this.state.txtnotransaksi_auto} />
-              <Grid container>
-                <Grid item xs={12} sm={8}>
-                  <TxtSearch tabIndex={++lastTabIndex} key={lastTabIndex} width='70' marginLabel='100px' searchFilter={this.searchFilter} handleOpenDialog={this.handleOpenDialog} id='txtmatauang' label='Uang' setRef={this.setRef} placeholder='' onKeyDown={this.handleKeyNavigator}  SetVariable={this.SetVariable} onUpdate={this.handleUpdate} value={this.state['txtmatauang']} />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} width='55' marginLabel='43px' id='txtkurs' label='Kurs' setRef={this.setRef} placeholder=''  value={this.state['txtkurs']} />
-                </Grid>
+            <Grid container id='gridContainer' ref={this.setRef}>
+              <Grid item xs={12} sm={7}>
+                <TxtSearch tabIndex={1} key={1} width='170' marginLabel='20%' id='txtterimadari' searchFilter={this.searchFilter} label='Terima Dari' handleOpenDialog={this.handleOpenDialog} onKeyDown={this.handleKeyTerimaDari} onUpdate={this.handleUpdate} setRef={this.setRef} placeholder=''  value={this.state['txtterimadari']} valueName={this.state['lbltxtterimadari']} SetVariable={this.SetVariable}/>
+                <TxtSearch tabIndex={2} key={2} width='170' marginLabel='20%' id='txtakunkas' searchFilter={this.searchFilter} label='Akun Kas [D]' handleOpenDialog={this.handleOpenDialog} onKeyDown={this.handleKeyNavigator} setRef={this.setRef} placeholder=''  onUpdate={this.handleUpdate} value={this.state['txtakunkas']} valueName={this.state['lbltxtakunkas']} SetVariable={this.SetVariable} />
+                <TxtInput tabIndex={3} key={3} width='250' marginLabel='20%' id='txturaian' label='Uraian' setRef={this.setRef} placeholder=''  value={this.state['txturaian']} />
               </Grid>
-              <TxtComboBox tabIndex={++lastTabIndex} data={this.progress} key={lastTabIndex} width='200' marginLabel='100px' id='txtprogress' label='Progress' onKeyDown={this.handleKeyProgress} setRef={this.setRef} placeholder=''  value={this.state['txtprogress']} />
-              </div>
+              <Grid item xs={12} sm={5}>
+                <div style={{width: '300px', float: 'right'}}>
+                <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} type='date' width='200' marginLabel='100px' id='txttanggal' label='Tanggal' onKeyDown={this.handleKeyTanggal} onChange={this.handleKeyTanggal} setRef={this.setRef} placeholder=''  value={this.state['txttanggal']} />
+                <TxtNoTransaksi tabIndex={++lastTabIndex} key={lastTabIndex} width='140' marginLabel='100px' id='txtnotransaksi' label='No Transaksi' setRef={this.setRef} placeholder=''  value={this.state['txtnotransaksi']} auto={this.state.txtnotransaksi_auto} />
+                <Grid container>
+                  <Grid item xs={12} sm={8}>
+                    <TxtSearch tabIndex={++lastTabIndex} key={lastTabIndex} width='70' marginLabel='100px' searchFilter={this.searchFilter} handleOpenDialog={this.handleOpenDialog} id='txtmatauang' label='Uang' setRef={this.setRef} placeholder='' onKeyDown={this.handleKeyNavigator}  SetVariable={this.SetVariable} onUpdate={this.handleUpdate} value={this.state['txtmatauang']} />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} width='55' marginLabel='43px' id='txtkurs' label='Kurs' setRef={this.setRef} placeholder=''  value={this.state['txtkurs']} />
+                  </Grid>
+                </Grid>
+                <TxtComboBox tabIndex={++lastTabIndex} data={this.progress} key={lastTabIndex} width='200' marginLabel='100px' id='txtprogress' label='Progress' onKeyDown={this.handleKeyProgress} setRef={this.setRef} placeholder=''  value={this.state['txtprogress']} />
+                </div>
+              </Grid>
             </Grid>
-          </Grid>
-          <DataGrid id='dg' column={this.grid} onClose={this.handleCloseDialog} searchFilter={this.searchFilter} getData={this.getData} data={this.state.dgData} width={ref.width} height={200} setRef={this.setRef} tabIndex={4}
-            handleOpenDialog={this.handleOpenDialog} onKeyDown={this.dgKeyDown} SetVariable={this.SetVariable} dg={dg} />
-        </PapperFix>
+            <DataGrid id='dg' column={this.grid} onClose={this.handleCloseDialog} searchFilter={this.searchFilter} getData={this.getData} data={this.state.dgData} width={ref.width} height={200} setRef={this.setRef} tabIndex={4}
+              handleOpenDialog={this.handleOpenDialog} onKeyDown={this.dgKeyDown} SetVariable={this.SetVariable} dg={dg} />
+          </PapperFix>
 
-        <CompSearch onClose={this.handleCloseDialog} open={this.state.openDialog} 
-        SetVariable={this.SetVariable} source={this.source} target={this.target} current={this.current} filter={this.filter}/>
-        
-      </div>
+          <CompSearch onClose={this.handleCloseDialog} open={this.state.openDialog} 
+          SetVariable={this.SetVariable} source={this.source} target={this.target} current={this.current} filter={this.filter}/>
+          
+        </div>
+
+        <div>
+          <AlertDialogConfirm obj={alert} onClose={()=>{}} />
+        </div>
+      </HotKeys>
     );
   }
 }
