@@ -715,7 +715,7 @@ class DataGrid extends React.Component
             </Table>
           </RootRef>
         </div>
-        <div id="divTable" onScroll={this.handleScroll} ref={this.setRef} style={{width: `${width}px`, height: `${height}px`,overflowX: "auto"}}>
+        <div id="divTable" onScroll={this.handleScroll} ref={this.setRef} style={{width: `${width}px`, height: `${height}px`,overflowX: "auto", borderBottom: '1px solid #ccc'}}>
           <RootRef rootRef={ref.tb}>
             <Table key={9} id={id} tabIndex={tabIndex} 
               className={classNames(classes.table, classes.stripped, classes.bordered)} onKeyDown={this.dgKeyDown} ref="tb" style={{width: widthGrid}}>
