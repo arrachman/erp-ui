@@ -32,14 +32,15 @@ class CR extends Component
     
     this.focus = {};
     this.state = {openDialog:false, dgData: [{no: 1}], txtmatauang: 'IDR',
-                  txturaian: '', txtkurs: '', txttanggal: ''}
+                  txturaian: '', txtkurs: '', txttanggal: '', txtnotransaksi_auto: true,
+                  txtnotransaksi: 'auto'}
     this.grid = 
     [
       {header: 'No', width: '60', item: 'no', require: false, edit: false, visible: true, skip: true, labelRender: 'center', itemRender: '', itemEditor: '', headerRender: '', itemEditor: '', headerRender: ''},
       {header: 'No Akun', width: '180', item: 'noakun', require: true, edit: true, visible: true, skip: false, labelRender: 'search', itemRender: 'search', itemEditor: '', headerRender: ''},
       {header: 'Nama Akun', width: '200', item: 'namaakun', require: false, edit: true, visible: true, skip: true, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
-      {header: 'Amount', width: '120', item: 'amount', require: false, edit: true, visible: true, skip: false, labelRender: 'currency', itemRender: '', itemEditor: 'nominal', headerRender: ''},
-      {header: 'Foreign Amount', width: '120', item: 'foreignamount', require: false, edit: true, visible: true, skip: true, labelRender: 'currency', itemRender: 'nominal', itemEditor: 'nominal', headerRender: ''},
+      {header: 'Amount', width: '120', item: 'amount', require: false, edit: true, visible: true, skip: false, labelRender: 'currency', itemRender: '', itemEditor: 'nominal', headerRender: 'right'},
+      {header: 'Foreign Amount', width: '120', item: 'foreignamount', require: false, edit: true, visible: true, skip: true, labelRender: 'currency', itemRender: 'nominal', itemEditor: 'nominal', headerRender: 'right'},
       {header: 'Note', width: '300', item: 'note', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
       {header: 'Cost Center', width: '120', item: 'costcenter', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
       {header: 'Divisi', width: '120', item: 'divisi', require: false, edit: true, visible: true, skip: false, labelRender: '', itemRender: '', itemEditor: '', headerRender: ''},
@@ -512,7 +513,7 @@ class CR extends Component
             <Grid item xs={12} sm={5}>
               <div style={{width: '300px', float: 'right'}}>
               <TxtInput tabIndex={++lastTabIndex} key={lastTabIndex} type='date' width='200' marginLabel='100px' id='txttanggal' label='Tanggal' onKeyDown={this.handleKeyTanggal} setRef={this.setRef} placeholder=''  value={this.state['txttanggal']} />
-              <TxtNoTransaksi tabIndex={++lastTabIndex} key={lastTabIndex} width='140' marginLabel='100px' id='txtnotransaksi' label='No Transaksi' setRef={this.setRef} placeholder=''  value={this.state['txtntoransaksi']} />
+              <TxtNoTransaksi tabIndex={++lastTabIndex} key={lastTabIndex} width='140' marginLabel='100px' id='txtnotransaksi' label='No Transaksi' setRef={this.setRef} placeholder=''  value={this.state['txtnotransaksi']} auto={this.state.txtnotransaksi_auto} />
               <Grid container>
                 <Grid item xs={12} sm={8}>
                   <TxtSearch tabIndex={++lastTabIndex} key={lastTabIndex} width='70' marginLabel='100px' searchFilter={this.searchFilter} handleOpenDialog={this.handleOpenDialog} id='txtmatauang' label='Uang' setRef={this.setRef} placeholder='' onKeyDown={this.handleKeyNavigator}  SetVariable={this.SetVariable} onUpdate={this.handleUpdate} value={this.state['txtmatauang']} />

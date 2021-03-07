@@ -65,7 +65,7 @@ export const TxtComboBox = ({id,label,error,value,onChange,width,className,onKey
   return (
     <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0}}>
       <Label htmlFor={id} error={error} style={{width: marginLabel || '20%'}}>{label}</Label>
-      <select id={id} name={id} className="text-input" style={{height: '35px', width: `${width}px`}} onKeyDown={onKeyDown} ref={setRef || null} {...props}>
+      <select id={id} name={id} className="text-input" style={{height: '35px', width: `${width}px`,cursor:'pointer'}} onKeyDown={onKeyDown} ref={setRef || null} {...props}>
         {childData}
       </select>
     </div>
@@ -119,6 +119,11 @@ export class TxtSearch extends React.Component
   ref = {};
   state = {fix: true, val: ''}
   blur = false;
+
+  constructor(props) {
+    super(props);
+
+  }
 
   handleKeyInput = e =>
   {
@@ -224,8 +229,8 @@ export class TxtSearch extends React.Component
     {
       this.props.setRef(e);
     }
-  }
-
+  }  
+  
   componentWillReceiveProps = (nextProps) =>
   {
     this.setState({val:nextProps.value || '', check: false});
@@ -278,22 +283,51 @@ export class TxtSearch extends React.Component
   }
 }
 
-export const TxtNoTransaksi = ({id,label,error,value,onChange,width,className,onKeyDown,autoFocus,setRef,marginLabel, ...props}) => {
-  const classes = classnames("input-group",{"animated shake error": !!error},className);
-  return (
-    <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0, alignItems:"center"}}>
-      <Label htmlFor={id} error={error} style={{width: marginLabel || '20%'}}>{label}</Label>
-      <div>
-      <input style={{width: `${width}px`, fontFamily: 'inherit'}} 
-          id={id}
-          className="text-input"
-          type='text' defaultValue={value} ref={setRef || null} onChange={onChange} onKeyDown={onKeyDown} autoFocus={autoFocus || true} {...props}/>
-        <InputFeedback error={error} />
+export class TxtNoTransaksi extends React.Component 
+{
+  state = {
+    value: '',
+    disabled: false
+  }
+  
+  componentWillReceiveProps = (nextProps, nextState) =>
+  {
+      this.setState({disabled:nextProps.auto, value:nextProps.value});
+  }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     this.props.enableInput != nextProps.enableInput
+  //   );
+  // }
+
+  handleChangeAuto = () => {
+    this.setState({disabled: !this.state.disabled, value:this.state.disabled?this.state.value:'auto'})
+  }
+
+  render ()
+  {
+    const {id,label,error,onChange,width,className,onKeyDown,autoFocus,setRef,marginLabel} = this.props;
+    const {value, disabled} = this.state;
+
+    const classes = classnames("input-group",{"animated shake error": !!error},className);
+    return (
+      <div className={classes} style={{display: 'flex',flexDirection:'row', margin:0, alignItems:"center"}}>
+        <Label htmlFor={id} error={error} style={{width: marginLabel || '20%'}}>{label}</Label>
+        <div>
+        <input style={{width: `${width}px`, fontFamily: 'inherit', cursor: disabled ? 'not-allowed' : 'default'}} 
+            id={id}
+            className="text-input"
+            type='text' value={value} ref={setRef || null} 
+            onChange={e => this.setState({value:e.target.value || ''})} 
+            onKeyDown={onKeyDown} disabled={disabled} autoFocus={autoFocus || true}/>
+          <InputFeedback error={error} />
+        </div>
+        <input type="checkbox" className="text-input" checked={disabled} onChange={this.handleChangeAuto} id={'cbx' + id} style={{padding:0, margin:0, width:'20px', fontFamily: 'inherit', cursor: 'pointer'}} tabIndex={-1}/>
+        <Label htmlFor={'cbx' + id} >Auto</Label>
       </div>
-      <input type="checkbox" className="text-input" id={'cbx' + id} style={{padding:0, margin:0, width:'20px', fontFamily: 'inherit'}}  tabIndex={-1}/>
-      <Label htmlFor={'cbx' + id} >Auto</Label>
-    </div>
-  );
+    );
+  }
 };
 
 export const Input = ({id,label,error,value,onChange,width,className,onKeyDown,autoFocus,setRef, ...props}) => {

@@ -27,7 +27,7 @@ class DataGrid extends React.Component
   constructor(props, context) 
   {
     super(props, context);
-
+    const {column, header} = props;
     ref.tb = React.createRef();
     ref.tb2 = React.createRef();
 
@@ -38,23 +38,24 @@ class DataGrid extends React.Component
     
     widthGrid = 0;
     
-    for(let i in props.column)
+    for(let i in column)
     {
-      if(props.column[i].visible)
+      if(column[i].visible)
       {
-        widthGrid += parseInt(props.column[i].width);
+        let textAlign = column[i].headerRender ? column[i].headerRender : 'left';
+        widthGrid += parseInt(column[i].width);
   
-        if(props.column[i].width === '0')
-          this.headersRow.push(<TableCell id={'headersRow' + i}  style={{padding: '0 0'}} key={'headers' + i}>{props.column[i].header}</TableCell>);
+        if(column[i].width === '0')
+          this.headersRow.push(<TableCell id={'headersRow' + i}  style={{padding: '0 0', textAlign}} key={'headers' + i}>{column[i].header}</TableCell>);
         else
-          this.headersRow.push(<TableCell id={'headersRow' + i}  style={{padding: '0 20px'}} width={props.column[i].width} key={'headers' + i}>{props.column[i].header}</TableCell>);
+          this.headersRow.push(<TableCell id={'headersRow' + i}  style={{padding: '0 20px', textAlign}} width={column[i].width} key={'headers' + i}>{column[i].header}</TableCell>);
       }
     }
 
     this.dgAdd();
     newLine = false;
     
-    for (let c = 0;c<props.column.length; c++)
+    for (let c = 0;c<column.length; c++)
     {
       this.state['prevVal' + 0 + c] = '';
       this.state['editing' + 0 + c] = false;
